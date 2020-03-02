@@ -57,6 +57,13 @@ header h2 {
     color: rosybrown;
 }
 
+/* Responsive el menú */
+@media screen and (max-width: 600px) {
+    .menu li{
+        float: none;
+    }
+}
+
 .sidebar {
     margin: 0;
     padding: 0;
@@ -147,7 +154,7 @@ div.row {
       }
   
       .column img {
-          height: 100%;
+        height: 100%;
       }
 }
 
@@ -160,9 +167,18 @@ div.row {
 }
 
 footer {
-    display: block;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color: dimgray;
     text-align: center;
     color: white;
-    padding: 30px;
+    padding: 20px;
+}
+
+/* Hacemos responsive el footer */
+@media screen and (max-width: 900px) { 
+    footer {
+        position: fixed;
+    }
 }
