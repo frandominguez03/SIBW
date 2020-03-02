@@ -99,6 +99,64 @@ header h2 {
     }
 }
 
+/* Evento */
+.evento {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+.event-img {
+    float: right;
+}
+
+/* Responsive */
+@media screen and (max-width: 1200px) {
+    .evento {
+        margin-bottom: 150px;
+    }
+
+    .event-img {
+        float: left;
+        max-width: 70%;
+        padding: 15px;
+    }
+}
+
+/* Botones */
+.button {
+    background-color: dimgray;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#button1:hover {
+    background-color: #3b5998;
+}
+
+#button2:hover {
+    background-color: #00acee;
+}
+
+#button3:hover {
+    background-color: #ff9966;
+}
+
+@media screen and (max-width: 800px) {
+    .evento {
+        margin-bottom: 450px;
+    }
+
+    .button {
+        display: none;
+    }
+}
+
 /* Grid */
 div.row {
     display: flex;
@@ -169,7 +227,6 @@ div.row {
 footer {
     left: 0;
     bottom: 0;
-    width: 100%;
     background-color: dimgray;
     text-align: center;
     color: white;
@@ -180,5 +237,6 @@ footer {
 @media screen and (max-width: 900px) { 
     footer {
         position: fixed;
+        width: 100%;
     }
 }
