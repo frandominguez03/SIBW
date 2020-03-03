@@ -67,11 +67,11 @@ header h2 {
 .sidebar {
     margin: 0;
     padding: 0;
-    width: 200px;
     background-color: #f1f1f1;
     position: absolute;
     height: 100%;
     overflow: auto;
+    width: 30%;
 }
 
 .sidebar a {
@@ -101,17 +101,20 @@ header h2 {
 
 /* Evento */
 .evento {
-    margin-left: 200px;
-    padding: 1px 16px;
+    width: 70%;
+    margin-left: 50%;
+    padding: 1px 1px;
     height: 1000px;
 }
 
 .event-img {
     float: right;
+    width: 70%;
+    padding: 0 4px;
 }
 
 /* Responsive */
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 900px) {
     .evento {
         margin-bottom: 150px;
     }
@@ -120,6 +123,16 @@ header h2 {
         float: left;
         max-width: 70%;
         padding: 15px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .evento {
+        padding-top: 10%;
+    }
+
+    .evento img {
+        padding-left: 13%;
     }
 }
 
@@ -149,11 +162,11 @@ header h2 {
 
 @media screen and (max-width: 800px) {
     .evento {
-        margin-bottom: 450px;
+        padding-bottom: 45%;
     }
 
     .button {
-        display: none;
+        margin: 5px;
     }
 }
 
@@ -162,9 +175,9 @@ div.row {
     display: flex;
     flex-wrap: wrap;
     padding: 0 4px;
-    margin-left: 200px;
+    margin-left: 50%;
     padding: 1px 16px;
-    height: 1000px;
+    width: 70%;
 }
 
 .column {
@@ -176,7 +189,11 @@ div.row {
 .column img {
     margin-top: 8px;
     vertical-align: middle;
-    width: 100%;
+    width: 120%;
+}
+
+.column div {
+    padding: 15px;
 }
 
 /* A partir de 700px ponemos solo dos columnas*/
@@ -188,6 +205,14 @@ div.row {
 
     .column img {
         height: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    div.row {
+        float: none;
+        padding-top: 40%;
+        padding-bottom: 40%;
     }
 }
 
@@ -231,6 +256,8 @@ footer {
     text-align: center;
     color: white;
     padding: 20px;
+    width: 100%;
+    float: left;
 }
 
 /* Hacemos responsive el footer */
@@ -238,5 +265,21 @@ footer {
     footer {
         position: fixed;
         width: 100%;
+    }
+}
+
+/* Para evento imprimir */
+.evento-imp {
+    margin-left: 5%;
+    font-family: consolas;
+}
+
+@media screen and (max-width: 640px) {
+    .event-img {
+        float: none;
+    }
+
+    .evento-imp p {
+        float: none;
     }
 }
