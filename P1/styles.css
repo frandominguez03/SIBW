@@ -160,6 +160,10 @@ header h2 {
     background-color: #ff9966;
 }
 
+#button4:hover {
+    background-color: #99F35A;
+}
+
 @media screen and (max-width: 800px) {
     .evento {
         padding-bottom: 45%;
@@ -282,4 +286,9 @@ footer {
     .evento-imp p {
         float: none;
     }
+}
+
+/* Comentarios */
+#comentarios {
+    display: none;
 }

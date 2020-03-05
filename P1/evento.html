@@ -7,6 +7,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles.css">
+        <script type="text/javascript" src="script.js"></script>
     </head>
 
     <body>
@@ -53,9 +54,24 @@
 
                 </p>
 
+                <div id="comentarios">
+                    <form name="formulario" onsubmit="return required()">
+                        <p>Nombre: <input type="text" name="nombre" size="40"></p>
+                        <p>Correo Electrónico: <input type="email" name="email"></p>
+                        <p>Comentario:
+                          <textarea name="comentario"></textarea>
+                        </p>
+                        <p>
+                          <input type="submit" value="Enviar">
+                          <input type="reset" value="Borrar">
+                        </p>
+                      </form>
+                </div>
+
                 <a href="#" class="button" id="button1">FaceBook</a>
                 <a href="#" class="button" id="button2">Twitter</a>
                 <a href="../P1/evento_imprimir.html" class="button" id="button3">Imprimir</a>
+                <button type="button" class="button" id="button4" onclick="Comentar(this)">Comentar</span>
             </div>
         </section>
     
