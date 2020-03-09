@@ -24,12 +24,14 @@
         </header>
 
         <section id="container">
+            <!-- Barra lateral con diferentes enlaces -->
             <div class="sidebar">
                 <a href="">Reglamento</a>
                 <a href="">Normativa Técnica</a>
                 <a href="">Entrevistas</a>
             </div>
 
+            <!-- El evento de la página -->
             <div class="evento">
                 <h2>
                     Dakar 2020 - Fernando Alonso
@@ -53,25 +55,48 @@
                     euismod id diam massa facilisis. Metus venenatis tempus sodales facilisis dignissim pulvinar, curae sociosqu consequat dis natoque proin nostra, augue tristique aliquam erat commodo.
 
                 </p>
-
+                
+                <!-- Cajón de comentarios. Contiene los dos comentarios por defecto y el formulario para enviar un nuevo comentario -->
                 <div id="comentarios">
-                    <form name="formulario" onsubmit="return required()">
+                    <!-- Comentarios separados por una barra horizontal -->
+                    <hr>
+
+                    <div id="defaultcomm">
+                        <div id="comen1">
+                            <p><strong>Pedro Martínez de la Rosa</strong></p>
+                            <p><em>04 de Abril de 2019, 17:48</em></p>
+                            <p>¡Una máquina! Sigue así crack</p>
+                        </div>
+                        <hr>
+    
+                        <div id="comen2">
+                            <p><strong>Sebastian Vettel</strong></p>
+                            <p><em>07 de Septiembre de 2019, 09:14</em></p>
+                            <p>Grande laboro!</p>
+                        </div>
+                    </div>
+                    
+                    <hr>
+
+                    <!-- Formulario para comentar -->
+                    <form name="formulario">
                         <p>Nombre: <input type="text" name="nombre" size="40"></p>
-                        <p>Correo Electrónico: <input type="email" name="email"></p>
+                        <p>Correo Electrónico: <input type="text" name="email"></p>
                         <p>Comentario:
                           <textarea name="comentario"></textarea>
                         </p>
                         <p>
-                          <input type="submit" value="Enviar">
+                          <button type="button" onclick="Comentar()">Enviar</button>
                           <input type="reset" value="Borrar">
                         </p>
                       </form>
                 </div>
 
+                <!-- Botones del evento -->
                 <a href="#" class="button" id="button1">FaceBook</a>
                 <a href="#" class="button" id="button2">Twitter</a>
                 <a href="../P1/evento_imprimir.html" class="button" id="button3">Imprimir</a>
-                <button type="button" class="button" id="button4" onclick="Comentar(this)">Comentar</span>
+                <button type="button" class="button" id="button4" onclick="CajaComentarios()">Comentar</span>
             </div>
         </section>
     
