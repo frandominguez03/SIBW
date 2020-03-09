@@ -27,11 +27,11 @@ function Comentar() {
     var fecha = new Date()
 
     /* Formateamos el año como queremos para después usarlo */
-    const ano = new Intl.DateTimeFormat('es', { year: 'numeric'}).format(fecha)
+    var ano = new Intl.DateTimeFormat('es', { year: 'numeric'}).format(fecha)
 
     /* Lo mismo para el día y la hora */
-    const dia = new Intl.DateTimeFormat('es', { day: '2-digit'}).format(fecha)
-    const hora = new Intl.DateTimeFormat('es', { hour: 'numeric', minute: 'numeric'}).format(fecha)
+    var dia = new Intl.DateTimeFormat('es', { day: '2-digit'}).format(fecha)
+    var hora = new Intl.DateTimeFormat('es', { hour: 'numeric', minute: 'numeric'}).format(fecha)
 
     /* Hay que hacer algo de magia para que la primera letra del mes la saque en mayúscula. Por defecto no lo hace.
     Lo que estoy haciendo es, crear una variable mes que simplemente contiene el mes formateado al español y en formato largo.
@@ -40,8 +40,8 @@ function Comentar() {
     la variable mes a partir del primer caracter. Un ejemplo:
     mes = marzo
     mesUpper = M + arzo = Marzo */
-    const mes = new Intl.DateTimeFormat('es', { month: 'long'}).format(fecha)
-    const mesUpper = mes[0].toUpperCase() + mes.slice(1)
+    var mes = new Intl.DateTimeFormat('es', { month: 'long'}).format(fecha)
+    var mesUpper = mes[0].toUpperCase() + mes.slice(1)
 
     /* Ahora lo que hacemos es obtener el elemtno con la ID de nuestra caja de comentarios y le añadimos (por eso el operador +=) a su HTML
     el comentario que nos acaban de enviar, que ya sabemos que está validado */
@@ -79,4 +79,28 @@ function ValidarEmail(mail)
   }
     alert("La dirección de correo electrónico no sigue un formato válido: nombre@mail.com")
     return false
+}
+
+/* Función para la censura de palabras a la vez que se escribe */
+function censura() {
+    const CENSURA = '*'
+    const PALABRAS = ['cerdo', 'perro', 'gato', 'tobillo', 'retrete', 'aguacate', 'Hamilton', 'calvo', 'enano', 'koala']
+    var fraseNormal = document.forms["formulario"]["comentario"].value
+    var frase = document.forms["formulario"]["comentario"].value.match(/[a-z'\-]+/gi)
+    var separadas = []
+    var frasefinal = fraseNormal
+
+    for(i = 0; i < frase.length; i++){
+        separadas.push(String(frase[i]))
+    }
+
+    for(j = 0; j < PALABRAS.length; j++){
+        var encontrada = separadas.indexOf(String(PALABRAS[j]))
+
+        if(encontrada != -1){
+            frasefinal = fraseNormal.replace(separadas[encontrada], CENSURA.repeat(separadas[encontrada].length))
+        }
+    }
+
+    document.forms["formulario"]["comentario"].value = frasefinal
 }

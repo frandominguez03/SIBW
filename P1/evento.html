@@ -83,7 +83,7 @@
                         <p>Nombre: <input type="text" name="nombre" size="40"></p>
                         <p>Correo Electrónico: <input type="text" name="email"></p>
                         <p>Comentario:
-                          <textarea name="comentario"></textarea>
+                          <textarea id="censurar" oninput="censura()" name="comentario"></textarea>
                         </p>
                         <p>
                           <button type="button" onclick="Comentar()">Enviar</button>
