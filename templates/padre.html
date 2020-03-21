@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>P1 SIBW - Francisco Domínguez Lorente</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <header>
+            <img id="logo" src="https://pluspng.com/img-png/png-logo-design-fancy-png-logo-design-91-on-professional-logo-design-with-png-logo-design-734.png" width=100px height=100px alt="Logo">
+            <h2><a href="index.php">Formula 1 2020</a></h2>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">Pilotos</a></li>
+                    <li><a href="#">Equipos</a></li>
+                    <li><a href="#">Circuitos</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="container">
+            <div class="sidebar">
+                <a href="">Reglamento</a>
+                <a href="">Normativa Técnica</a>
+                <a href="">Entrevistas</a>
+            </div>
+
+            {% block contenido %}
+                <p>Bloque por defecto</p>
+            {% endblock %}
+        </section>
+    
+    <footer>
+        <p>2020 © Francisco Domínguez Lorente</p>
+        
+        <div id="contacto">
+            Sistemas de Información Basados en Web</br>
+            <i>Portada</i>
+        </div>
+    </footer>
+    </body>
+</html>

@@ -1,95 +1,55 @@
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>P1 SIBW - Francisco Domínguez Lorente</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
-
-    <body>
-        <header>
-            <img id="logo" src="https://pluspng.com/img-png/png-logo-design-fancy-png-logo-design-91-on-professional-logo-design-with-png-logo-design-734.png" width=100px height=100px alt="Logo">
-            <h2><a href="index.php">Formula 1 2020</a></h2>
-            <nav class="menu">
-                <ul>
-                    <li><a href="#">Pilotos</a></li>
-                    <li><a href="#">Equipos</a></li>
-                    <li><a href="#">Circuitos</a></li>
-                </ul>
-            </nav>
-        </header>
-
-        <section id="container">
-            <div class="sidebar">
-                <a href="">Reglamento</a>
-                <a href="">Normativa Técnica</a>
-                <a href="">Entrevistas</a>
+{% extends "padre.html" %}
+    {% block contenido %}
+    <aside class="prueba">
+        <div class="column">
+            <div>
+                <img class="rejilla" src="/img/alo.jpg">
+                <p><a href="evento.php?ev=1">Fernando Alonso</a></p>
             </div>
 
-            <div class="row">
-                <div class="column">
-                    <div>
-                        <img class="rejilla" src="/img/alo.jpg">
-                        <p><a href="evento.php">Fernando Alonso</a></p>
-                    </div>
-
-                    <div>
-                        <img class="rejilla" src="/img/sai.jpg">
-                        <p><a href="evento.php">Carlos Sainz Jr</a></p>
-                    </div>
-
-                    <div>
-                        <img class="rejilla" src="/img/kar.jpeg">
-                        <p><a href="evento.php">Narain Karthikeyan</a></p>
-                    </div>
-                </div>
-
-                <div class="column">
-                    <div>
-                        <img class="rejilla" src="/img/ham.jpg">
-                        <p><a href="evento.php">Lewis Hamilton</a></p>
-                    </div>
-
-                    <div>
-                        <img class="rejilla" src="/img/ver.jpeg">
-                        <p><a href="evento.php">Max Verstappen</a></p>
-                    </div>
-
-                    <div>
-                        <img class="rejilla" src="/img/sat.jpg">
-                        <p><a href="evento.php">Takuma Sato</a></p>
-                    </div>
-                </div>
-
-                <div class="column">
-                    <div>
-                        <img class="rejilla" src="/img/ric.jpg">
-                        <p><a href="evento.php">Daniel Ricciardo</a></p>
-                    </div>
-    
-                    <div>
-                        <img class="rejilla" src="/img/mal.jpg">
-                        <p><a href="evento.php">Pastor Maldonado</a></p>
-                    </div>
-    
-                    <div>
-                        <img class="rejilla" src="/img/bia.jpg">
-                        <p><a href="evento.php">Jules Bianchi</a></p>
-                    </div>
-                </div>
+            <div>
+                <img class="rejilla" src="/img/sai.jpg">
+                <p><a href="evento.php?ev=2">Carlos Sainz Jr</a></p>
             </div>
-        </section>
-    
-    <footer>
-        <p>2020 © Francisco Domínguez Lorente</p>
-        
-        <div id="contacto">
-            Sistemas de Información Basados en Web</br>
-            <i>Portada</i>
+
+            <div>
+                <img class="rejilla" src="/img/kar.jpeg">
+                <p><a href="evento.php?ev=3">Narain Karthikeyan</a></p>
+            </div>
         </div>
-    </footer>
-    </body>
-</html>
+
+        <div class="column">
+            <div>
+                <img class="rejilla" src="/img/ham.jpg">
+                <p><a href="evento.php?ev=4">Lewis Hamilton</a></p>
+            </div>
+
+            <div>
+                <img class="rejilla" src="/img/ver.jpeg">
+                <p><a href="evento.php?ev=5">Max Verstappen</a></p>
+            </div>
+
+            <div>
+                <img class="rejilla" src="/img/sat.jpg">
+                <p><a href="evento.php?ev=6">Takuma Sato</a></p>
+            </div>
+        </div>
+
+        <div class="column">
+            <div>
+                <img class="rejilla" src="/img/ric.jpg">
+                <p><a href="evento.php?ev=7">Daniel Ricciardo</a></p>
+            </div>
+
+            <div>
+                <img class="rejilla" src="/img/mal.jpg">
+                <p><a href="evento.php?ev=8">Pastor Maldonado</a></p>
+            </div>
+
+            <div>
+                <img class="rejilla" src="/img/bia.jpg">
+                <p><a href="evento.php?ev=9">Jules Bianchi</a></p>
+            </div>
+        </div>
+    </aside>
+    {% endblock %}
