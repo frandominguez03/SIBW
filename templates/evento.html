@@ -1,6 +1,6 @@
 {% extends "padre.html" %}       
     {% block contenido %}
-        <div class="evento">
+        <article class="evento">
             <h2>
                 {{ evento['nombre'] }}
             </h2>
@@ -49,9 +49,11 @@
             </div>
 
             <!-- Botones del evento -->
-            <a href="#" class="button" id="button1">FaceBook</a>
-            <a href="#" class="button" id="button2">Twitter</a>
-            <a href="../P1/evento_imprimir.html" class="button" id="button3">Imprimir</a>
-            <button type="button" class="button" id="button4" onclick="CajaComentarios()">Comentar</span>
-        </div>
+            <div id="botones">
+                <a href="#" class="button" id="button1">FaceBook</a>
+                <a href="#" class="button" id="button2">Twitter</a>
+                <a href="../P1/evento_imprimir.html" class="button" id="button3">Imprimir</a>
+                <button type="button" class="button" id="button4" onclick="CajaComentarios()">Comentar</span>
+            </div>
+        </article>
     {% endblock %}
