@@ -8,9 +8,15 @@
                 {{ evento['fecha'] }}, {{ evento['lugar'] }}
             </h4>
 
-            <p><img class="event-img" src="{{ evento['imagen'] }}">
-                {{ evento['descripcion'] }}
-            </p>
+            <div id="galeria-img">
+                <p><img id="event-img" src="{{ evento['imagen'] }}">
+                    {{ evento['descripcion'] }}
+                </p>
+
+                <input type="button" id="galeria_atras" value="&lt;&lt;Back" onclick="anterior()"> 
+                <input type="button" id="galeria_siguiente" value="Next&gt;&gt;" onclick="siguiente()">
+            </div>
+            
             
             <!-- Cajón de comentarios. Contiene los dos comentarios por defecto y el formulario para enviar un nuevo comentario -->
             <div id="comentarios">
@@ -30,9 +36,9 @@
 
                 <!-- Formulario para comentar -->
                 <form name="formulario">
-                    <p>Nombre: <input type="text" name="nombre" size="40"></p>
-                    <p>Correo Electrónico: <input type="text" name="email"></p>
-                    <p>Comentario:
+                    <p>Nombre<br> <input type="text" name="nombre" size="40"></p>
+                    <p>Correo Electrónico<br> <input type="text" name="email" size="40"></p>
+                    <p>Comentario<br>
                         <textarea id="censurar" oninput="censura()" name="comentario"></textarea>
                     </p>
                     <p>
@@ -46,8 +52,16 @@
             <div id="botones">
                 <a href="#" class="button" id="button1">FaceBook</a>
                 <a href="#" class="button" id="button2">Twitter</a>
-                <a href="../P1/evento_imprimir.html" class="button" id="button3">Imprimir</a>
+                <a href="../templates/evento_imprimir.html" class="button" id="button3">Imprimir</a>
                 <button type="button" class="button" id="button4" onclick="CajaComentarios()">Comentar</span>
+                <button type="button" class="button" id="button5" onclick="Galeria()">Galeria</span>
             </div>
         </article>
+        {% for src in galeria %}
+            {{src}}
+            {% endfor %}
+        <input id="siiii" style="visibility:hidden;" value="
+            {% for src in galeria %}
+            {{ src }}
+            {% endfor %}"/>
     {% endblock %}

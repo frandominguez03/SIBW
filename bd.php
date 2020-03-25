@@ -49,5 +49,19 @@ class BDGestion {
 
         return json_encode($palabras);
     }
+
+    function getGaleria() {
+        $res = $this->conexion->query("SELECT src from galeria");
+
+        $img = array();
+
+        if($res->num_rows > 0) {
+            while($row = $res->fetch_assoc()) {
+                array_push($img, $row['src']);
+            }
+        }
+
+        return $img;
+    }
 }
 ?>

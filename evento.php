@@ -18,6 +18,10 @@
     $evento = $conexion->getEvento($idEv);
     $comentarios = $conexion->getComentarios($idEv);
     $palabras = $conexion->getPalabrasCensuradas();
+    $galeria = $conexion->getGaleria();
 
-    echo $twig->render('evento.html', ['evento' => $evento, 'comentarios' => $comentarios, 'palabras' => $palabras]);
+    var_dump($galeria);
+    var_dump($palabras);
+
+    echo $twig->render('evento.html', ['evento' => $evento, 'comentarios' => $comentarios, 'palabras' => $palabras, 'galeria' => $galeria]);
 ?>

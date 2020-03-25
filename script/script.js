@@ -45,7 +45,7 @@ function Comentar() {
 
     /* Ahora lo que hacemos es obtener el elemtno con la ID de nuestra caja de comentarios y le añadimos (por eso el operador +=) a su HTML
     el comentario que nos acaban de enviar, que ya sabemos que está validado */
-    document.getElementById("defaultcomm").innerHTML += '<hr><div id="comen3"> <p><strong> ' + nombre + '</strong></p> <p><em>' + dia + ' de ' + mesUpper + ' de ' + ano + ', ' + hora + '</em></p> <p> ' + comen + '</p></div>'
+    document.getElementById("defaultcomm").innerHTML += '<div id="comen3"> <p><strong> ' + nombre + '</strong></p> <p><em>' + dia + ' de ' + mesUpper + ' de ' + ano + ', ' + hora + '</em></p> <p> ' + comen + '</p></div><hr>'
 }
 
 /* Función para mostrar alertas si uno de los campos se queda sin rellenar */
@@ -85,6 +85,7 @@ function ValidarEmail(mail)
 function censura() {
     const CENSURA = '*'
     var json_palabras = '{{ palabras }}'
+    console.log(json_palabras)
     const PALABRAS = JSON.parse(json_palabras)
     var fraseNormal = document.forms["formulario"]["comentario"].value
     var frase = document.forms["formulario"]["comentario"].value.match(/[a-z'\-]+/gi)
@@ -104,4 +105,32 @@ function censura() {
     }
 
     document.forms["formulario"]["comentario"].value = frasefinal
+}
+
+/* Gestión de la galería */
+function Galeria() {
+    document.getElementById('galeria_atras').style.display = 'block'
+    document.getElementById('galeria_siguiente').style.display = 'block'
+}
+
+var actual = 0
+
+function anterior() {
+    var galeria = document.getElementById("siiii").value
+    //galeria = galeria.trim().split(" ")
+    console.log(galeria[0])
+    if(actual <= 0) {
+        actual = galeria.length - 1
+    }
+
+    else {
+        actual--
+    }
+
+    document.getElementById("event-img").src = galeria[actual]
+}
+
+function siguiente() {
+    actual = (actual + 1) % galeria.length
+    document.getElementById("event-img").src = galeria[actual]
 }
