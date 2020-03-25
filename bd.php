@@ -37,17 +37,17 @@ class BDGestion {
     }
 
     function getPalabrasCensuradas() {
-        $res = $this->conexion->query("SELECT palabra from palabras_censuradas");
+        $res = $this->conexion->query("SELECT palabra from palabras");
 
-        $palabras = array();
+        $img = array();
 
         if($res->num_rows > 0) {
             while($row = $res->fetch_assoc()) {
-                array_push($palabras, $row['palabra']);
+                array_push($img, $row['palabra']);
             }
         }
 
-        return json_encode($palabras);
+        return $img;
     }
 
     function getGaleria() {

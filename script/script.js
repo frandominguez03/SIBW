@@ -85,7 +85,6 @@ function ValidarEmail(mail)
 function censura() {
     const CENSURA = '*'
     var json_palabras = '{{ palabras }}'
-    console.log(json_palabras)
     const PALABRAS = JSON.parse(json_palabras)
     var fraseNormal = document.forms["formulario"]["comentario"].value
     var frase = document.forms["formulario"]["comentario"].value.match(/[a-z'\-]+/gi)
@@ -116,9 +115,8 @@ function Galeria() {
 var actual = 0
 
 function anterior() {
-    var galeria = document.getElementById("siiii").value
-    //galeria = galeria.trim().split(" ")
-    console.log(galeria[0])
+    var galeria = document.getElementById("galeria").value.match(/[a-z'\-]+/gi)
+
     if(actual <= 0) {
         actual = galeria.length - 1
     }
@@ -127,10 +125,12 @@ function anterior() {
         actual--
     }
 
-    document.getElementById("event-img").src = galeria[actual]
+    document.getElementById("event-img").src = '/img/' + galeria[actual] + '.jpg'
 }
 
 function siguiente() {
+    var galeria = document.getElementById("galeria").value.match(/[a-z'\-]+/gi)
     actual = (actual + 1) % galeria.length
-    document.getElementById("event-img").src = galeria[actual]
+    
+    document.getElementById("event-img").src = '/img/' + galeria[actual] + '.jpg'
 }

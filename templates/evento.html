@@ -57,10 +57,13 @@
                 <button type="button" class="button" id="button5" onclick="Galeria()">Galeria</span>
             </div>
         </article>
-        {% for src in galeria %}
-            {{src}}
-            {% endfor %}
-        <input id="siiii" style="visibility:hidden;" value="
+
+        <input id="galeria" style="visibility:hidden;" value="
+            {% for src in galeria %}
+            {{ src }}
+            {% endfor %}"/>
+
+        <input id="palabras" style="visibility:hidden;" value="
             {% for src in galeria %}
             {{ src }}
             {% endfor %}"/>

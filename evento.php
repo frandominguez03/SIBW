@@ -20,8 +20,5 @@
     $palabras = $conexion->getPalabrasCensuradas();
     $galeria = $conexion->getGaleria();
 
-    var_dump($galeria);
-    var_dump($palabras);
-
     echo $twig->render('evento.html', ['evento' => $evento, 'comentarios' => $comentarios, 'palabras' => $palabras, 'galeria' => $galeria]);
 ?>
