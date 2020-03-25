@@ -84,7 +84,8 @@ function ValidarEmail(mail)
 /* Función para la censura de palabras a la vez que se escribe */
 function censura() {
     const CENSURA = '*'
-    const PALABRAS = ['cerdo', 'perro', 'gato', 'tobillo', 'retrete', 'aguacate', 'Hamilton', 'calvo', 'enano', 'koala']
+    var json_palabras = '{{ palabras }}'
+    const PALABRAS = JSON.parse(json_palabras)
     var fraseNormal = document.forms["formulario"]["comentario"].value
     var frase = document.forms["formulario"]["comentario"].value.match(/[a-z'\-]+/gi)
     var separadas = []

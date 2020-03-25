@@ -5,7 +5,7 @@
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
 
-    if(isset($_GET['ev'])) {
+    if(isset($_GET['ev']) && ctype_digit($_GET['ev'])) {
         $idEv = $_GET['ev'];
     }
 
@@ -13,7 +13,11 @@
         $idEv = -1;
     }
 
-    $evento = getEvento($idEv);
+    $conexion = new BDGestion();
 
-    echo $twig->render('evento.html', ['evento' => $evento]);
+    $evento = $conexion->getEvento($idEv);
+    $comentarios = $conexion->getComentarios($idEv);
+    $palabras = $conexion->getPalabrasCensuradas();
+
+    echo $twig->render('evento.html', ['evento' => $evento, 'comentarios' => $comentarios, 'palabras' => $palabras]);
 ?>

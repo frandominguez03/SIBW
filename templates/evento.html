@@ -17,22 +17,16 @@
                 <!-- Comentarios separados por una barra horizontal -->
                 <hr>
 
-                <div id="defaultcomm">
-                    <div id="comen1">
-                        <p><strong>Pedro Martínez de la Rosa</strong></p>
-                        <p><em>04 de Abril de 2019, 17:48</em></p>
-                        <p>¡Una máquina! Sigue así crack</p>
-                    </div>
-                    <hr>
-
-                    <div id="comen2">
-                        <p><strong>Sebastian Vettel</strong></p>
-                        <p><em>07 de Septiembre de 2019, 09:14</em></p>
-                        <p>Grande laboro!</p>
-                    </div>
+                <div id ="defaultcomm">
+                    {% for comentario in comentarios %}
+                        <div class="comen">
+                            <p><strong>{{ comentario[0] }}</strong></p>
+                            <p><em>{{ comentario[1]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
+                            <p>{{ comentario[2] }}</p>
+                        </div>
+                        <hr>
+                    {% endfor %}
                 </div>
-                
-                <hr>
 
                 <!-- Formulario para comentar -->
                 <form name="formulario">
