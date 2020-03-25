@@ -8,16 +8,21 @@
                 {{ evento['fecha'] }}, {{ evento['lugar'] }}
             </h4>
 
-            <div id="galeria-img">
-                <p><img id="event-img" src="{{ evento['imagen'] }}">
-                    {{ evento['descripcion'] }}
-                </p>
+            <p id="desc">
+                {{ evento['descripcion'] }}
+            </p>
 
-                <input type="button" id="galeria_atras" value="&lt;&lt;Back" onclick="anterior()"> 
-                <input type="button" id="galeria_siguiente" value="Next&gt;&gt;" onclick="siguiente()">
+            <div id="controles-gal">
+                <h4>
+                    Galería de Fotos
+                </h4>
+                <input type="button" class="boton_galeria" value="&lt;&lt; Anterior" onclick="anterior()"> 
+                <input type="button" class="boton_galeria" value="Siguiente &gt;&gt;" onclick="siguiente()">
             </div>
             
-            
+
+            <img id="event-img" src="{{ evento['imagen'] }}">
+
             <!-- Cajón de comentarios. Contiene los dos comentarios por defecto y el formulario para enviar un nuevo comentario -->
             <div id="comentarios">
                 <!-- Comentarios separados por una barra horizontal -->
@@ -54,7 +59,6 @@
                 <a href="#" class="button" id="button2">Twitter</a>
                 <a href="../templates/evento_imprimir.html" class="button" id="button3">Imprimir</a>
                 <button type="button" class="button" id="button4" onclick="CajaComentarios()">Comentar</span>
-                <button type="button" class="button" id="button5" onclick="Galeria()">Galeria</span>
             </div>
         </article>
 
@@ -64,7 +68,7 @@
             {% endfor %}"/>
 
         <input id="palabras" style="visibility:hidden;" value="
-            {% for src in galeria %}
-            {{ src }}
+            {% for palabra in palabras %}
+            {{ palabra }}
             {% endfor %}"/>
     {% endblock %}

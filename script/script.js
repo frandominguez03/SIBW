@@ -84,8 +84,8 @@ function ValidarEmail(mail)
 /* Función para la censura de palabras a la vez que se escribe */
 function censura() {
     const CENSURA = '*'
-    var json_palabras = '{{ palabras }}'
-    const PALABRAS = JSON.parse(json_palabras)
+    var palabras = document.getElementById("palabras").value.match(/[a-z'\-]+/gi)
+    console.log(palabras)
     var fraseNormal = document.forms["formulario"]["comentario"].value
     var frase = document.forms["formulario"]["comentario"].value.match(/[a-z'\-]+/gi)
     var separadas = []
@@ -95,8 +95,8 @@ function censura() {
         separadas.push(String(frase[i]))
     }
 
-    for(j = 0; j < PALABRAS.length; j++){
-        var encontrada = separadas.indexOf(String(PALABRAS[j]))
+    for(j = 0; j < palabras.length; j++){
+        var encontrada = separadas.indexOf(String(palabras[j]))
 
         if(encontrada != -1){
             frasefinal = fraseNormal.replace(separadas[encontrada], CENSURA.repeat(separadas[encontrada].length))
@@ -107,11 +107,6 @@ function censura() {
 }
 
 /* Gestión de la galería */
-function Galeria() {
-    document.getElementById('galeria_atras').style.display = 'block'
-    document.getElementById('galeria_siguiente').style.display = 'block'
-}
-
 var actual = 0
 
 function anterior() {
