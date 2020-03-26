@@ -110,7 +110,6 @@ header h2 {
 
 #event-img {
     width: 70%;
-    padding-left: 50%;
 }
 
 /* Responsive */
@@ -123,16 +122,6 @@ header h2 {
         float: left;
         max-width: 70%;
         padding: 15px;
-    }
-}
-
-@media screen and (max-width: 700px) {
-    .evento {
-        padding-top: 10%;
-    }
-
-    .evento img {
-        padding-left: 13%;
     }
 }
 
@@ -183,8 +172,15 @@ header h2 {
 
 @media screen and (max-width: 500px) {
     .evento {
-        padding-top: 75%;
-        padding-bottom: 300px;
+        padding-top: 30%;
+        padding-bottom: 500px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .evento {
+        padding-top: 150px;
+        padding-bottom: 600px;
     }
 }
 
@@ -199,6 +195,13 @@ article.grid {
 }
 
 @media screen and (max-width: 800px) {
+    article.grid {
+        padding-top: 150px;
+        padding-bottom: 150px;
+    }
+}
+
+@media screen and (max-width: 400px) {
     article.grid {
         padding-top: 150px;
         padding-bottom: 150px;
@@ -234,10 +237,8 @@ article.grid {
 }
 
 @media screen and (max-width: 600px) {
-    aside {
+    .sidebar {
         float: none;
-        padding-top: 40%;
-        padding-bottom: 40%;
     }
 }
 
@@ -315,11 +316,6 @@ footer {
 }
 
 /* Galería */
-#controles-gal {
-    float: right;
-    margin-top: -50px;
-}
-
 @media screen and (max-width: 800px) {
     #controles-gal {
         padding-top: 20%;
@@ -331,6 +327,13 @@ footer {
 }
 
 #desc {
-    width: 30%;
-    display: inline-block;
+    width: 25%;
+    float: right;
+}
+
+@media screen and (max-width: 900px) {
+    #desc {
+        float: none;
+        width: 100%;
+    }
 }

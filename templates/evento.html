@@ -8,10 +8,6 @@
                 {{ evento['fecha'] }}, {{ evento['lugar'] }}
             </h4>
 
-            <p id="desc">
-                {{ evento['descripcion'] }}
-            </p>
-
             <div id="controles-gal">
                 <h4>
                     Galería de Fotos
@@ -19,6 +15,13 @@
                 <input type="button" class="boton_galeria" value="&lt;&lt; Anterior" onclick="anterior()"> 
                 <input type="button" class="boton_galeria" value="Siguiente &gt;&gt;" onclick="siguiente()">
             </div>
+
+            <div id="desc">
+                <p>
+                    {{ evento['descripcion'] }}
+                </p>
+            </div>
+            
             
 
             <img id="event-img" src="{{ evento['imagen'] }}">
