@@ -63,5 +63,38 @@ class BDGestion {
 
         return $img;
     }
+
+    function checkLogin($nick, $pass) {
+        $res = $this->conexion->query("SELECT * from usuarios WHERE name='" . $nick . "'");
+
+        if($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+        }
+
+        if(password_verify($pass, $row['password'])) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /* Devuelve 1 si el registro se ha completado, 0 si no se ha podido completar por que el nombre de usuario ya existía */
+    function register($nick, $pass) {
+        $res = $this->conexion->query("SELECT * from usuarios WHERE name='" . $nick . "'");
+
+        if($res->num_rows > 0) {
+            return 0;
+        }
+
+        else if(is_string($nick) && is_string($pass)) {
+            $pass = password_hash($pass, PASSWORD_DEFAULT);
+            $moderador = 0;
+            $gestor = 0;
+            $super = 0;
+
+            $register = $this->conexion->query("INSERT into usuarios (name, password, moderador, gestor, super) VALUES ('$nick', '$pass', '$moderador', '$gestor', '$super')");
+            return 1;
+        }
+    }
 }
 ?>

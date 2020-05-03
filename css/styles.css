@@ -337,3 +337,8 @@ footer {
         width: 100%;
     }
 }
+
+/* Formulario de inicio de sesión */
+.formLogin {
+    margin-left: 50%;
+}

@@ -4,5 +4,12 @@
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
 
-    echo $twig->render('index.html', []);
+    session_start();
+    $identificado = false;
+
+    if(isset($_SESSION['identificado'])) {
+        $identificado = true;
+    }
+
+    echo $twig->render('index.html', ['identificado' => $identificado]);
 ?>
