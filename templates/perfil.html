@@ -1,0 +1,21 @@
+{% extends "padre.html" %}
+    {% block contenido %}
+        <article class="formLogin">
+            Bienvenido a tu perfil, {{ usuario['name'] }}<br><br>
+
+            <form action="login.php" method="post">
+                Cambiar nombre de usuario:<br>
+                <input type="text" name="newName" /><br><br>
+
+                Cambiar contraseña:<br>
+                <input type="password" name="newPass" /><br><br>
+
+                Nueva contraseña:<br>
+                <input type="password" name="newPassConfirm" /><br><br>
+
+                Para verificar los cambios es necesario que introduzcas tu contraseña actual<br>
+                Contraseña actual:<br> <input type="password" name="password" required/><br><br>
+                <input type="submit" value="Guardar cambios" />
+            </form>
+        </article>
+    {% endblock %}

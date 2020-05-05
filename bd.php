@@ -96,5 +96,19 @@ class BDGestion {
             return 1;
         }
     }
+
+    function cargarUsuario($nick) {
+        $res = $this->conexion->query("SELECT * from usuarios WHERE name='" . $nick . "'");
+
+        $usuario = array();
+
+        /* Con esto tenemos un array multidimensional para obtener todos los comentarios a la vez */
+        if($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+            $usuario = array('id' => $row['id'], 'name' => $row['name'], 'moderador' => $row['moderador'], 'gestor' => $row['gestor'], 'super' => $row['super']);
+        }
+
+        return $usuario;
+    }
 }
 ?>

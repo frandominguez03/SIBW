@@ -5,6 +5,13 @@
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader);
 
+    session_start();
+    $identificado = false;
+
+    if(isset($_SESSION['identificado'])) {
+        $identificado = true;
+    }
+
     if(isset($_GET['ev']) && ctype_digit($_GET['ev'])) {
         $idEv = $_GET['ev'];
     }
@@ -23,5 +30,5 @@
         $galeria = $conexion->getGaleria();
     }
 
-    echo $twig->render('evento.html', ['evento' => $evento, 'comentarios' => $comentarios, 'palabras' => $palabras, 'galeria' => $galeria]);
+    echo $twig->render('evento.html', ['evento' => $evento, 'comentarios' => $comentarios, 'palabras' => $palabras, 'galeria' => $galeria, 'identificado' => $identificado]);
 ?>
