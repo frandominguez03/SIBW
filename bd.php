@@ -11,20 +11,20 @@ class BDGestion {
     }
 
     function getEvento($idEvento) {
-        $res = $this->conexion->query("SELECT nombre, lugar, fecha, imagen, descripcion FROM eventos WHERE id=" . $idEvento);
+        $res = $this->conexion->query("SELECT id, nombre, lugar, fecha, imagen, descripcion FROM eventos WHERE id=" . $idEvento);
 
         $evento = array('nombre' => 'Nombre por defecto', 'lugar' => 'Lugar por defecto', 'fecha' => date("Y-m-d"), 'imagen' => '/img/alo.jpg', 'descripcion' => 'Descripción por defecto');
 
         if($res->num_rows > 0) {
             $row = $res->fetch_assoc();
-            $evento = array('nombre' => $row['nombre'], 'lugar' => $row['lugar'], 'fecha' => $row['fecha'], 'imagen' => $row['imagen'], 'descripcion' => $row['descripcion']);
+            $evento = array('id' => $row['id'], 'nombre' => $row['nombre'], 'lugar' => $row['lugar'], 'fecha' => $row['fecha'], 'imagen' => $row['imagen'], 'descripcion' => $row['descripcion']);
         }
 
         return $evento;
     }
 
     function getComentarios($idEvento) {
-        $res = $this->conexion->query("SELECT autor, fecha, contenido FROM comentarios WHERE idEven=" . $idEvento);
+        $res = $this->conexion->query("SELECT idComen, autor, fecha, contenido FROM comentarios WHERE idEven=" . $idEvento);
 
         $comentarios = array();
 
@@ -65,7 +65,7 @@ class BDGestion {
     }
 
     function checkLogin($nick, $pass) {
-        $res = $this->conexion->query("SELECT * from usuarios WHERE name='" . $nick . "'");
+        $res = $this->conexion->query("SELECT password from usuarios WHERE name='" . $nick . "'");
 
         if($res->num_rows > 0) {
             $row = $res->fetch_assoc();
@@ -98,7 +98,7 @@ class BDGestion {
     }
 
     function cargarUsuario($nick) {
-        $res = $this->conexion->query("SELECT * from usuarios WHERE name='" . $nick . "'");
+        $res = $this->conexion->query("SELECT id, name, moderador, gestor, super from usuarios WHERE name='" . $nick . "'");
 
         $usuario = array();
 
@@ -109,6 +109,20 @@ class BDGestion {
         }
 
         return $usuario;
+    }
+
+    function cambiarNombre($antiguo, $nuevo) {
+        $res = $this->conexion->query("UPDATE usuarios SET name='$nuevo' WHERE name='$antiguo'");
+    }
+
+    function cambiarPass($user, $pass) {
+        $nuevo = password_hash($pass, PASSWORD_DEFAULT);
+        $res = $this->conexion->query("UPDATE usuarios SET password='$nuevo' WHERE name='$user'");
+    }
+
+    function borrarComentario($idComen) {
+        $res = $this->conexion->query("DELETE FROM comentarios WHERE idComen='$idComen'");
+        var_dump($res);
     }
 }
 ?>

@@ -6,36 +6,54 @@
     $twig = new \Twig\Environment($loader);
 
     $conexion = new BDGestion();
+    $verificada = false;
 
     session_start();
 
-    if(isset($_SESSION['nameUsuario'])) {
-        $usuario = $conexion->cargarUsuario($_SESSION['nameUsuario']);
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if(!empty($_POST['newName'])) {
+            // Verificamos que la contraseña es válida
+            if(is_string($_POST['password'])) {
+                if($conexion->checkLogin($_SESSION['nameUsuario'], $_POST['password'])) {
+                    $verificada = true;
+                }
+            }
+
+            if($verificada) {
+                if(is_string($_POST['newName'])) {
+                    $nuevoNombre = $_POST['newName'];
+                }
+
+                $conexion->cambiarNombre($_SESSION['nameUsuario'], $nuevoNombre);
+                $_SESSION['nameUsuario'] = $nuevoNombre;
+                header("refresh:1;url=perfil.php");
+                echo 'Nombre cambiado con éxito.';
+            }
+
+            $verificada = false;
+        }
+
+        if(!empty($_POST['newPass']) && !empty($_POST['newPassConfirm'])) {
+            if((is_string($_POST['newPass']) && is_string($_POST['newPassConfirm'])) && $_POST['newPass'] == $_POST['newPassConfirm']) {
+                // Verificamos que la contraseña es válida
+                if(is_string($_POST['password'])) {
+                    if($conexion->checkLogin($_SESSION['nameUsuario'], $_POST['password'])) {
+                        $verificada = true;
+                    }
+                }
+
+                if($verificada) {
+                    $conexion->cambiarPass($_SESSION['nameUsuario'], $_POST['newPass']);
+                    session_destroy();
+                    header("refresh:3;url=login.php");
+                    echo 'Contraseña cambiada con éxito. Deberás iniciar sesión...';
+                }  
+            }
+        }
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if(isset($_POST['newName'])) {
-            if(is_string($_POST['newName'])) {
-                $nuevoNombre = $_POST['newName'];
-            }
-            
-            $conexion->cambiarNombre($_SESSION['nameUsuario'], real_escape_string($nuevoNombre));
-        }
-        
-        $nick = $_POST['name'];
-        $pass = $_POST['password'];
-
-        if ($conexion->register($nick, $pass) === 1) {
-            
-            header("refresh:3;url=index.php");
-            echo 'Cambios realizados con éxito. Redirigiendo...';
-        }
-
-        else {
-            header("Location: perfil.php");
-        }
-
-        exit();
+    if(isset($_SESSION['nameUsuario'])) {
+        $usuario = $conexion->cargarUsuario($_SESSION['nameUsuario']);
     }
 
     $identificado = false;

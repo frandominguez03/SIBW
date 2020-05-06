@@ -34,9 +34,13 @@
                 <div id ="defaultcomm">
                     {% for comentario in comentarios %}
                         <div class="comen">
-                            <p><strong>{{ comentario[0] }}</strong></p>
-                            <p><em>{{ comentario[1]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
-                            <p>{{ comentario[2] }}</p>
+                            <p><strong>{{ comentario[1] }}</strong></p>
+                            {% if usuario['moderador'] == 1 %}
+                            <a href="/evento.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
+                            <img class="iconos" src="/img/lapiz.png"/>
+                            {% endif %}
+                            <p><em>{{ comentario[2]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
+                            <p>{{ comentario[3] }}</p>
                         </div>
                         <hr>
                     {% endfor %}

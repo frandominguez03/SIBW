@@ -342,3 +342,11 @@ footer {
 .formLogin {
     margin-left: 50%;
 }
+
+/* Iconos */
+.iconos {
+    width: 20px;
+    height: 20px;
+    float: right;
+    padding: 5px;
+}
