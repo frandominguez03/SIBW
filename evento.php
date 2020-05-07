@@ -39,5 +39,7 @@
         $galeria = $conexion->getGaleria();
     }
 
+    var_dump($comentarios);
+
     echo $twig->render('evento.html', ['evento' => $evento, 'comentarios' => $comentarios, 'palabras' => $palabras, 'galeria' => $galeria, 'usuario' => $usuario, 'identificado' => $identificado]);
 ?>

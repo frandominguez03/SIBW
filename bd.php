@@ -23,8 +23,9 @@ class BDGestion {
         return $evento;
     }
 
+    /* Todos los comentarios de un evento */
     function getComentarios($idEvento) {
-        $res = $this->conexion->query("SELECT idComen, autor, fecha, contenido FROM comentarios WHERE idEven=" . $idEvento);
+        $res = $this->conexion->query("SELECT idComen, autor, fecha, contenido, editado FROM comentarios WHERE idEven=" . $idEvento);
 
         $comentarios = array();
 
@@ -34,6 +35,37 @@ class BDGestion {
         }
 
         return $comentarios;
+    }
+
+    /* Solo un comentario */
+    function obtenerComentario($idComen) {
+        $res = $this->conexion->query("SELECT idComen, idEven, autor, fecha, contenido FROM comentarios WHERE idComen=" . $idComen);
+
+        if($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+            $comentario = array('idComen' => $row['idComen'], 'idEven' => $row['idEven'], 'autor' => $row['autor'], 'fecha' => $row['fecha'], 'contenido' => $row['contenido']);
+        }
+
+        return $comentario;
+    }
+
+    /* Obtener todos los comentarios */
+    function getAllComentarios() {
+        $res = $this->conexion->query("SELECT * from comentarios");
+
+        $comentarios = array();
+
+        /* Con esto tenemos un array multidimensional para obtener todos los comentarios a la vez */
+        while($row = mysqli_fetch_row($res)) {
+            $comentarios[] = $row;
+        }
+
+        return $comentarios;
+    }
+
+    /* Modificar un comentario */
+    function modificarComentario($idComen, $contenido) {
+        $res = $this->conexion->query("UPDATE comentarios SET contenido='$contenido', editado='1' WHERE idComen='$idComen'");
     }
 
     function getPalabrasCensuradas() {

@@ -15,5 +15,9 @@
         $usuario = $conexion->cargarUsuario($_SESSION['nameUsuario']);
     }
 
-    echo $twig->render('index.html', ['identificado' => $identificado, 'usuario' => $usuario]);
+    if($usuario['moderador'] == 1) {
+        $comentarios = $conexion->getAllComentarios();
+    }
+
+    echo $twig->render('moderacion.html', ['identificado' => $identificado, 'usuario' => $usuario, 'comentarios' => $comentarios]);
 ?>

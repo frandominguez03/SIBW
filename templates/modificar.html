@@ -1,0 +1,13 @@
+{% extends "padre.html" %}
+    {% block contenido %}
+        <article class="formLogin">
+            <h3>Modificando comentario</h3><br>
+            <strong>Autor:</strong> {{ comentario['autor'] }}<br><br>
+            <strong>Contenido actual:</strong> {{ comentario['contenido'] }}<br><br>
+            <form action="modificar.php?ev={{ comentario['idEven'] }}&comen={{ comentario['idComen'] }}" method="post" id="modificar">
+                <strong>Modificar comentario:</strong><br>
+                <textarea name="contenido" form="modificar" required></textarea><br><br>
+                <input type="submit" value="Modificar" />
+            </form>
+        </article>
+    {% endblock %}
