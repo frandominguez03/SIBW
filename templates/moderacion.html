@@ -1,14 +1,13 @@
 {% extends "padre.html" %}
     {% block contenido %}
+        {% if usuario['moderador'] == 1 %}
         <article class="formLogin">
             <div id ="defaultcomm">
                 {% for comentario in comentarios %}
                     <div class="comen">
-                        <p><strong>{{ comentario[2] }}</strong></p>
-                        {% if usuario['moderador'] == 1 %}
+                        <p><strong>{{ comentario[2] }}</strong></p>                     
                         <a href="/evento.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
                         <a href="/modificar.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>
-                        {% endif %}
                         <p><em>{{ comentario[3]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
                         <p>{{ comentario[4] }}</p>
                         {% if comentario[5] == 1 %}
@@ -19,4 +18,5 @@
                 {% endfor %}
             </div>
         </article>
+        {% endif %}
     {% endblock %}

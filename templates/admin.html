@@ -1,0 +1,16 @@
+{% extends "padre.html" %}
+    {% block contenido %}
+        {% if usuario['gestor'] == 1 %}
+        <article class="formLogin">
+            Bienvenido a la zona de administración, {{ usuario['name'] }}<br><br>
+            
+            <div id="botones">
+                <a href="/addevento.php" class="button" id="button1">Añadir Evento</a>
+                <a href="/gestioneventos.php" class="button" id="button2">Gestión de Eventos</a>
+                {% if usuario['super'] == 1 %}
+                    <a href="/permisos.php" class="button" id="button3">Gestión de Permisos</a>
+                {% endif %}
+            </div>
+        </article>
+        {% endif %}
+    {% endblock %}

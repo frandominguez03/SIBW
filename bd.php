@@ -96,6 +96,7 @@ class BDGestion {
         return $img;
     }
 
+    /* Comprobar los datos de inicio de sesión de un usuario */
     function checkLogin($nick, $pass) {
         $res = $this->conexion->query("SELECT password from usuarios WHERE name='" . $nick . "'");
 
@@ -124,11 +125,12 @@ class BDGestion {
             $gestor = 0;
             $super = 0;
 
-            $register = $this->conexion->query("INSERT into usuarios (name, password, moderador, gestor, super) VALUES ('$nick', '$pass', '$moderador', '$gestor', '$super')");
+            $register = $this->conexion->query("INSERT INTO usuarios (name, password, moderador, gestor, super) VALUES ('$nick', '$pass', '$moderador', '$gestor', '$super')");
             return 1;
         }
     }
 
+    /* Cargamos un usuario desde la base de datos */
     function cargarUsuario($nick) {
         $res = $this->conexion->query("SELECT id, name, moderador, gestor, super from usuarios WHERE name='" . $nick . "'");
 
@@ -143,18 +145,52 @@ class BDGestion {
         return $usuario;
     }
 
+    /* Función para crear un evento */
+    function newEvento($nombre, $lugar, $fecha, $contenido, $ruta) {
+        $insertar = $this->conexion->query("INSERT INTO eventos (nombre, lugar, fecha, imagen, descripcion) VALUES ('$nombre', '$lugar', '$fecha', '$ruta', '$contenido')");
+
+        $res = $this->conexion->query("SELECT id FROM eventos WHERE nombre='$nombre'");
+
+        if($res->num_rows > 0) {
+            $row = $res->fetch_assoc();
+            $idEvento = array('id' => $row['id']);
+
+            if($idEvento['id'] > 0) {
+                return $idEvento['id'];
+            }
+        }
+
+        return -1;
+    }
+
+    /* Función para cargar todos los eventos de la base de datos */
+    function getAllEventos() {
+        $res = $this->conexion->query("SELECT * from eventos");
+
+        $eventos = array();
+
+        /* Con esto tenemos un array multidimensional para obtener todos los comentarios a la vez */
+        while($row = mysqli_fetch_row($res)) {
+            $eventos[] = $row;
+        }
+
+        return $eventos;
+    }
+
+    /* Función pra cambiar el nombre */
     function cambiarNombre($antiguo, $nuevo) {
         $res = $this->conexion->query("UPDATE usuarios SET name='$nuevo' WHERE name='$antiguo'");
     }
 
+    /* Función para cambiar la contraseña */
     function cambiarPass($user, $pass) {
         $nuevo = password_hash($pass, PASSWORD_DEFAULT);
         $res = $this->conexion->query("UPDATE usuarios SET password='$nuevo' WHERE name='$user'");
     }
 
+    /* Función para borrar un comentario */
     function borrarComentario($idComen) {
         $res = $this->conexion->query("DELETE FROM comentarios WHERE idComen='$idComen'");
-        var_dump($res);
     }
 }
 ?>

@@ -51,8 +51,6 @@
 
                 <!-- Formulario para comentar -->
                 <form name="formulario">
-                    <p>Nombre<br> <input type="text" name="nombre" size="40"></p>
-                    <p>Correo Electrónico<br> <input type="text" name="email" size="40"></p>
                     <p>Comentario<br>
                         <textarea id="censurar" oninput="censura()" name="comentario"></textarea>
                     </p>
@@ -68,7 +66,9 @@
                 <a href="#" class="button" id="button1">FaceBook</a>
                 <a href="#" class="button" id="button2">Twitter</a>
                 <a href="../templates/evento_imprimir.html" class="button" id="button3">Imprimir</a>
-                <button type="button" class="button" id="button4" onclick="CajaComentarios()">Comentar</span>
+                {% if identificado == true %}
+                    <button type="button" class="button" id="button4" onclick="CajaComentarios()">Comentar</span>
+                {% endif %}
             </div>
         </article>
 

@@ -1,0 +1,17 @@
+{% extends "padre.html" %}
+    {% block contenido %}
+        {% if usuario['gestor'] == 1 %}
+        <article class="formLogin">
+            <div id ="defaultcomm">
+                {% for evento in eventos %}
+                    <div class="comen">
+                        <a href="/evento.php?ev={{ evento[0] }}"><p><strong>{{ evento[1] }}</strong></p></a>                    
+                        <p>{{ evento[2] }}</p>
+                        <p><em>{{ evento[3]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
+                    </div>
+                    <hr>
+                {% endfor %}
+            </div>
+        </article>
+        {% endif %}
+    {% endblock %}
