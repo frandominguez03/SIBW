@@ -177,6 +177,38 @@ class BDGestion {
         return $eventos;
     }
 
+    /* Función para cargar todos los usuarios de la base de datos */
+    function getAllUsuarios() {
+        $res = $this->conexion->query("SELECT * from usuarios");
+
+        $usuarios = array();
+
+        /* Con esto tenemos un array multidimensional para obtener todos los comentarios a la vez */
+        while($row = mysqli_fetch_row($res)) {
+            $usuarios[] = $row;
+        }
+
+        return $usuarios;
+    }
+
+    /* Función para cambiar el rol */
+    function cambiarPermisos($idUser, $opcion, $rol) {
+        $cambio = $opcion ? 1 : 0;
+        switch($rol) {
+            case 'moderador':
+                $res = $this->conexion->query("UPDATE usuarios SET moderador='$cambio' WHERE id='$idUser'");
+            break;
+
+            case 'gestor':
+                $res = $this->conexion->query("UPDATE usuarios SET gestor='$cambio' WHERE id='$idUser'");
+            break;
+
+            case 'super':
+                $res = $this->conexion->query("UPDATE usuarios SET super='$cambio' WHERE id='$idUser'");
+            break;
+        }
+    }
+
     /* Función pra cambiar el nombre */
     function cambiarNombre($antiguo, $nuevo) {
         $res = $this->conexion->query("UPDATE usuarios SET name='$nuevo' WHERE name='$antiguo'");

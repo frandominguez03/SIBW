@@ -131,6 +131,12 @@ header h2 {
     padding-top: 15px;
     padding-bottom: 15px;
 }
+
+#botones {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
 .button {
     background-color: dimgray;
     border: none;
