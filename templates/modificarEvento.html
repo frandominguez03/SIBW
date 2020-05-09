@@ -1,0 +1,29 @@
+{% extends "padre.html" %}
+    {% block contenido %}
+        <article class="formLogin">
+            <h3>Modificando Evento</h3><br>
+            <form action="modificarEvento.php?ev={{ evento['id'] }}" method="post" id="modificarEvento">
+                <strong>Nombre:</strong> {{ evento['nombre'] }}<br>
+                <strong>Cambiar nombre</strong><br>
+                <input type="text" name="name" /><br><br>
+
+                <strong>Lugar:</strong> {{ evento['lugar'] }}<br>
+                <strong>Cambiar lugar</strong><br>
+                <input type="text" name="lugar" /><br><br>
+
+                <strong>Fecha:</strong> {{ evento['fecha'] }}<br>
+                <strong>Cambiar fecha</strong><br>
+                <input type="date" name="date" /><br><br>
+
+                <strong>Imagen</strong><br>
+                <img id="modificarImg" src="{{ evento['imagen'] }}"/><br>
+                <strong>Cambiar imagen</strong><br>
+                <input type="file" name="imagen"/><br><br>
+
+                <strong>Descripción:</strong> {{ evento['descripcion'] }}<br>
+                <strong>Modificar descripción</strong><br>
+                <textarea name="descripcion" form="modificarEvento"></textarea><br><br>
+                <input type="submit" value="Modificar Evento" />
+            </form>
+        </article>
+    {% endblock %}

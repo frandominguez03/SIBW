@@ -17,6 +17,15 @@
         $usuario = $conexion->cargarUsuario($_SESSION['nameUsuario']);
     }
 
+    if($_SERVER['REQUEST_METHOD'] === 'GET') {
+        if($usuario['super'] == 1) {
+            if(isset($_GET['ev']) && ctype_digit($_GET['ev']) && isset($_GET['delete']) && is_string($_GET['delete']) && $_GET['delete'] == true) {
+                $conexion->borrarEvento($_GET['ev']);
+                header("Location: gestioneventos.php");
+            }
+        }
+    }
+
     $eventos = array();
 
     if($usuario['gestor'] == 1) {

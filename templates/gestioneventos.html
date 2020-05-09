@@ -5,7 +5,9 @@
             <div id ="defaultcomm">
                 {% for evento in eventos %}
                     <div class="comen">
-                        <a href="/evento.php?ev={{ evento[0] }}"><p><strong>{{ evento[1] }}</strong></p></a>                    
+                        <a href="/evento.php?ev={{ evento[0] }}"><p><strong>{{ evento[1] }}</strong></p></a>
+                        <a href="/gestioneventos.php?ev={{ evento[0] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
+                        <a href="/modificarEvento.php?ev={{ evento[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>                    
                         <p>{{ evento[2] }}</p>
                         <p><em>{{ evento[3]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
                     </div>

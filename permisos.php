@@ -30,12 +30,14 @@
                 $opcion = (htmlspecialchars($_GET['gestor']) == 'false') ? 0 : 1;
                 $rol = 'gestor';
                 $conexion->cambiarPermisos($_GET['idUser'], $opcion, $rol);
+                header("Location: permisos.php");
             }
 
             if(isset($_GET['idUser']) && ctype_digit($_GET['idUser']) && isset($_GET['super']) && is_string($_GET['super']) && ($_GET['super'] == true || $_GET['super'] == false)) {
                 $opcion = (htmlspecialchars($_GET['super']) == 'false') ? 0 : 1;
                 $rol = 'super';
                 $conexion->cambiarPermisos($_GET['idUser'], $opcion, $rol);
+                header("Location: permisos.php");
             }
         }
     }

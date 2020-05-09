@@ -177,6 +177,11 @@ class BDGestion {
         return $eventos;
     }
 
+    /* Función para borrar un evento */
+    function borrarEvento($idEvento) {
+        $res = $this->conexion->query("DELETE FROM eventos WHERE id='$idEvento'");
+    }
+
     /* Función para cargar todos los usuarios de la base de datos */
     function getAllUsuarios() {
         $res = $this->conexion->query("SELECT * from usuarios");
@@ -200,11 +205,11 @@ class BDGestion {
             break;
 
             case 'gestor':
-                $res = $this->conexion->query("UPDATE usuarios SET gestor='$cambio' WHERE id='$idUser'");
+                $res = $this->conexion->query("UPDATE usuarios SET gestor='$cambio', moderador='$cambio' WHERE id='$idUser'");
             break;
 
             case 'super':
-                $res = $this->conexion->query("UPDATE usuarios SET super='$cambio' WHERE id='$idUser'");
+                $res = $this->conexion->query("UPDATE usuarios SET gestor='$cambio', moderador='$cambio', super='$cambio' WHERE id='$idUser'");
             break;
         }
     }
@@ -223,6 +228,31 @@ class BDGestion {
     /* Función para borrar un comentario */
     function borrarComentario($idComen) {
         $res = $this->conexion->query("DELETE FROM comentarios WHERE idComen='$idComen'");
+    }
+
+    /* Función para modificar el nombre de un evento */
+    function modificarNombreEvento($idEvento, $nombre) {
+        $this->conexion->query("UPDATE eventos SET name='$nombre' WHERE id='$idEvento'");
+    }
+
+    /* Función para modificar el lugar de un evento */
+    function modificarLugarEvento($idEvento, $lugar) {
+        $this->conexion->query("UPDATE eventos SET lugar='$lugar' WHERE id='$idEvento'");
+    }
+
+    /* Función para modificar la fecha de un evento */
+    function modificarFechaEvento($idEvento, $fecha) {
+        $this->conexion->query("UPDATE eventos SET fecha='$fecha' WHERE id='$idEvento'");
+    }
+
+    /* Función para modificar la imagen de un evento */
+    function modificarImagenEvento($idEvento, $img) {
+        $this->conexion->query("UPDATE eventos SET imagen='$img' WHERE id='$idEvento'");
+    }
+
+    /* Función para modificar la descripción de un evento */
+    function modificarDescripcionEvento($idEvento, $nombre) {
+        $this->conexion->query("UPDATE eventos SET descripcion='$descripcion' WHERE id='$idEvento'");
     }
 }
 ?>

@@ -4,6 +4,12 @@
             <h2>
                 {{ evento['nombre'] }}
             </h2>
+
+            {% if usuario['gestor'] == 1 %}
+                <a href="/gestioneventos.php?ev={{ evento['id'] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
+                <a href="/modificar.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>
+            {% endif %}
+
             <h4>
                 {{ evento['fecha'] }}, {{ evento['lugar'] }}
             </h4>
@@ -37,7 +43,7 @@
                             <p><strong>{{ comentario[1] }}</strong></p>
                             {% if usuario['moderador'] == 1 %}
                             <a href="/evento.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
-                            <a href="/modificar.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>
+                            <a href="/modificarComentario.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>
                             {% endif %}
                             <p><em>{{ comentario[2]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
                             <p>{{ comentario[3] }}</p>

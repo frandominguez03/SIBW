@@ -43,5 +43,5 @@
         exit();
       }
 
-    echo $twig->render('modificar.html', ['evento' => $evento, 'comentario' => $comentario, 'identificado' => $identificado, 'usuario' => $usuario]);
+    echo $twig->render('modificarComentario.html', ['evento' => $evento, 'comentario' => $comentario, 'identificado' => $identificado, 'usuario' => $usuario]);
 ?>
