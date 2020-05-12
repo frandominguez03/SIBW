@@ -45,7 +45,7 @@
                             <a href="/evento.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
                             <a href="/modificarComentario.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>
                             {% endif %}
-                            <p><em>{{ comentario[2]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
+                            <p><em>{{ comentario[2]|date("d \\d\\e F \\d\\e Y") }}</em></p>
                             <p>{{ comentario[3] }}</p>
                             {% if comentario[4] == 1 %}
                             <p><em>Mensaje editado por un moderador</em></p>
@@ -56,12 +56,12 @@
                 </div>
 
                 <!-- Formulario para comentar -->
-                <form name="formulario">
-                    <p>Comentario<br>
-                        <textarea id="censurar" oninput="censura()" name="comentario"></textarea>
+                <form action="addcomentario.php?ev={{ evento['id'] }}" method="post" id="addcomentario">
+                    <h3>Publicar Comentario</h3>
+                        <textarea id="censurar" oninput="censura()" name="comentario" form="addcomentario" required></textarea>
                     </p>
                     <p>
-                        <button type="button" onclick="Comentar()">Enviar</button>
+                        <input type="submit" value="Publicar Comentario" />
                         <input type="reset" value="Borrar">
                     </p>
                     </form>

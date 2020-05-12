@@ -6,14 +6,17 @@
     $twig = new \Twig\Environment($loader);
 
     session_start();
+    $conexion = new BDGestion();
+
     $identificado = false;
     $usuario = array();
 
     if(isset($_SESSION['identificado'])) {
         $identificado = true;
-        $conexion = new BDGestion();
         $usuario = $conexion->cargarUsuario($_SESSION['nameUsuario']);
     }
 
-    echo $twig->render('index.html', ['identificado' => $identificado, 'usuario' => $usuario]);
+    $eventos = $conexion->getAllEventos();
+
+    echo $twig->render('index.html', ['identificado' => $identificado, 'usuario' => $usuario, 'eventos' => $eventos]);
 ?>
