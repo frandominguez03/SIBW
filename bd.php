@@ -99,7 +99,7 @@ class BDGestion {
 
     /* Función para añadir imagen a la galería de un evento */
     function addImagenGaleria($idEvento, $imagen) {
-        $this->conexion->query("INSERT INTO galeria (idEvento, src) VALUES ('$idEvento', '$sinEspacios')");
+        $this->conexion->query("INSERT INTO galeria (idEvento, src) VALUES ('$idEvento', '$imagen')");
     }
 
     /* Función para obtener todas las etiquetas pertenecientes a un evento */
