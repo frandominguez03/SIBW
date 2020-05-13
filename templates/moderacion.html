@@ -6,9 +6,9 @@
                 {% for comentario in comentarios %}
                     <div class="comen">
                         <p><strong>{{ comentario[2] }}</strong></p>                     
-                        <a href="/evento.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
-                        <a href="/modificar.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>
-                        <p><em>{{ comentario[3]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
+                        <a href="/evento.php?ev={{ comentario[1] }}&comen={{ comentario[0] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
+                        <a href="/modificarComentario.php?ev={{ comentario[1] }}&comen={{ comentario[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>
+                        <p><em>{{ comentario[3]|date("d \\d\\e F \\d\\e Y") }}</em></p>
                         <p>{{ comentario[4] }}</p>
                         {% if comentario[5] == 1 %}
                             <p><em>Mensaje editado por un moderador</em></p>

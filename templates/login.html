@@ -1,10 +1,12 @@
 {% extends "padre.html" %}
     {% block contenido %}
         <article class="formLogin">
-            <form action="login.php" method="post">
-                Nombre de Usuario:<br> <input type="text" name="name" /><br>
-                Contraseña:<br> <input type="password" name="password" /><br><br>
-                <input type="submit" value="Iniciar Sesión" />
-            </form>
+            <div id="formularioLogin">
+                <form action="login.php" method="post">
+                    Nombre de Usuario:<br> <input type="text" name="name" /><br>
+                    Contraseña:<br> <input type="password" name="password" /><br><br>
+                    <input type="submit" value="Iniciar Sesión" />
+                </form>
+            </div>
         </article>
     {% endblock %}

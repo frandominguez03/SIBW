@@ -9,7 +9,7 @@
                         <a href="/gestioneventos.php?ev={{ evento[0] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
                         <a href="/modificarEvento.php?ev={{ evento[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>                    
                         <p>{{ evento[2] }}</p>
-                        <p><em>{{ evento[3]|date("d \\d\\e F \\d\\e Y, H:i") }}</em></p>
+                        <p><em>{{ evento[3]|date("d \\d\\e F \\d\\e Y") }}</em></p>
                     </div>
                     <hr>
                 {% endfor %}

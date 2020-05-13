@@ -97,6 +97,11 @@ class BDGestion {
         return $img;
     }
 
+    /* Función para añadir imagen a la galería de un evento */
+    function addImagenGaleria($idEvento, $imagen) {
+        $this->conexion->query("INSERT INTO galeria (idEvento, src) VALUES ('$idEvento', '$sinEspacios')");
+    }
+
     /* Función para obtener todas las etiquetas pertenecientes a un evento */
     function getEtiquetas($idEvento) {
         $res = $this->conexion->query("SELECT nombre FROM etiquetas WHERE idEvento='$idEvento'");
@@ -114,8 +119,14 @@ class BDGestion {
 
     /* Función para añadir etiquetas a un evento */
     function addEtiquetas($idEvento, $etiquetas) {
-        foreach($etiquetas as $etiqueta) {
-            $this->conexion->query("INSERT INTO etiquetas (idEvento, nombre) VALUES ('$idEvento', '$etiqueta')");
+        if(is_array($etiquetas)) {
+            foreach($etiquetas as $etiqueta) {
+                $this->conexion->query("INSERT INTO etiquetas (idEvento, nombre) VALUES ('$idEvento', '$etiqueta')");
+            }
+        }
+        
+        else {
+            $this->conexion->query("INSERT INTO etiquetas (idEvento, nombre) VALUES ('$idEvento', '$etiquetas')");
         }
     }
 
@@ -179,11 +190,17 @@ class BDGestion {
             $idEvento = array('id' => $row['id']);
 
             if($idEvento['id'] > 0) {
-                return $idEvento['id'];
+                $idEven = $idEvento['id'];
+            }
+
+            else {
+                $idEven = -1;
             }
         }
 
-        return -1;
+        $this->conexion->query("INSERT INTO galeria (idEvento, src) VALUES ('$idEven', '$ruta')");
+
+        return $idEven;
     }
 
     /* Función para crear un comentario */
@@ -230,15 +247,33 @@ class BDGestion {
         $cambio = $opcion ? 1 : 0;
         switch($rol) {
             case 'moderador':
-                $res = $this->conexion->query("UPDATE usuarios SET moderador='$cambio' WHERE id='$idUser'");
+                if($cambio == 1) {
+                    $this->conexion->query("UPDATE usuarios SET moderador='$cambio' WHERE id='$idUser'");
+                }
+
+                else {
+                    $this->conexion->query("UPDATE usuarios SET moderador='$cambio', gestor='$cambio', super='$cambio' WHERE id='$idUser'");
+                }
             break;
 
             case 'gestor':
-                $res = $this->conexion->query("UPDATE usuarios SET gestor='$cambio', moderador='$cambio' WHERE id='$idUser'");
+                if($cambio == 1) {
+                    $this->conexion->query("UPDATE usuarios SET gestor='$cambio', moderador='$cambio' WHERE id='$idUser'");
+                }
+
+                else {
+                    $this->conexion->query("UPDATE usuarios SET gestor='$cambio', super='$cambio' WHERE id='$idUser'");
+                }
             break;
 
             case 'super':
-                $res = $this->conexion->query("UPDATE usuarios SET gestor='$cambio', moderador='$cambio', super='$cambio' WHERE id='$idUser'");
+                if($cambio == 1) {
+                    $res = $this->conexion->query("UPDATE usuarios SET gestor='$cambio', moderador='$cambio', super='$cambio' WHERE id='$idUser'");
+                }
+                
+                else {
+                    $res = $this->conexion->query("UPDATE usuarios SET super='$cambio' WHERE id='$idUser'");
+                }
             break;
         }
     }

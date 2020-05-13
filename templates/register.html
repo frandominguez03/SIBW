@@ -1,10 +1,13 @@
 {% extends "padre.html" %}
     {% block contenido %}
         <article class="formLogin">
-            <form action="register.php" method="post">
-                Nombre de Usuario:<br> <input type="text" name="name" /><br>
-                Contraseña:<br> <input type="password" name="password" /><br><br>
-                <input type="submit" value="Registrarse" />
-            </form>
+            <div id="formularioRegistro">
+                <form action="register.php" method="post">
+                    Nombre de Usuario:<br> <input type="text" name="name" required/><br>
+                    Contraseña:<br> <input type="password" name="password" required/><br>
+                    Contraseña <em>(de nuevo)</em>:<br> <input type="password" name="password2" required/><br><br>
+                    <input type="submit" value="Registrarse" />
+                </form>
+            </div>
         </article>
     {% endblock %}

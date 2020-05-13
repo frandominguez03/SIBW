@@ -7,13 +7,16 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conexion = new BDGestion();
-        $nick = $_POST['name'];
+        $nick = htmlspecialchars($_POST['name']);
         $pass = $_POST['password'];
+        $pass2 = $_POST['password2'];
         
-        if ($conexion->register($nick, $pass) === 1) {
+        if($pass == $pass2) {
+          if ($conexion->register($nick, $pass) === 1) {
           
-          header("refresh:3;url=login.php");
-          echo 'Registrado con éxito. Por favor, inicia sesión.';
+            header("refresh:2;url=login.php");
+            echo 'Registrado con éxito. Por favor, inicia sesión.';
+          }
         }
         
         else {

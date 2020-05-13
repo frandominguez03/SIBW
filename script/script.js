@@ -85,7 +85,6 @@ function ValidarEmail(mail)
 function censura() {
     const CENSURA = '*'
     var palabras = document.getElementById("palabras").value.match(/[a-z'\-]+/gi)
-    console.log(palabras)
     var fraseNormal = document.forms["formulario"]["comentario"].value
     var frase = document.forms["formulario"]["comentario"].value.match(/[a-z'\-]+/gi)
     var separadas = []
@@ -104,28 +103,4 @@ function censura() {
     }
 
     document.forms["formulario"]["comentario"].value = frasefinal
-}
-
-/* Gestión de la galería */
-var actual = 0
-
-function anterior() {
-    var galeria = document.getElementById("galeria").value.match(/[a-z'\-]+/gi)
-
-    if(actual <= 0) {
-        actual = galeria.length - 1
-    }
-
-    else {
-        actual--
-    }
-
-    document.getElementById("event-img").src = '/img/' + galeria[actual] + '.jpg'
-}
-
-function siguiente() {
-    var galeria = document.getElementById("galeria").value.match(/[a-z'\-]+/gi)
-    actual = (actual + 1) % galeria.length
-    
-    document.getElementById("event-img").src = '/img/' + galeria[actual] + '.jpg'
 }

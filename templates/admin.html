@@ -2,7 +2,8 @@
     {% block contenido %}
         {% if usuario['gestor'] == 1 %}
         <article class="formLogin">
-            Bienvenido a la zona de administración, {{ usuario['name'] }}<br><br>
+            <div id="zonaAdmin">
+                Bienvenido a la zona de administración, {{ usuario['name'] }}<br><br>
             
             <div id="botones">
                 <a href="/addevento.php" class="button" id="button1">Añadir Evento</a>
@@ -10,6 +11,7 @@
                 {% if usuario['super'] == 1 %}
                     <a href="/permisos.php" class="button" id="button3">Gestión de Permisos</a>
                 {% endif %}
+            </div>
             </div>
         </article>
         {% endif %}

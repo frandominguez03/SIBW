@@ -26,20 +26,24 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if($usuario['gestor'] == 1) {
-            if(isset($_POST['name']) && is_string($_POST['name'])) {
+            if(isset($_POST['name']) && is_string($_POST['name']) && !empty($_POST['name'])) {
                 $conexion->modificarNombreEvento($idEven, htmlspecialchars($_POST['name']));
             }
 
-            if(isset($_POST['lugar']) && is_string($_POST['lugar'])) {
+            if(isset($_POST['lugar']) && is_string($_POST['lugar']) && !empty($_POST['lugar'])) {
                 $conexion->modificarLugarEvento($idEven, htmlspecialchars($_POST['lugar']));
             }
 
-            if(isset($_POST['date'])) {
+            if(isset($_POST['date']) && !empty($_POST['date'])) {
                 $fecha = preg_replace("([^0-9/])", "", $_POST['fecha']);
                 $conexion->modificarFechaEvento($idEven, $fecha);
             }
 
-            if(isset($_FILES['imagen'])){
+            if(isset($_POST['etiquetas']) && !empty($_POST['etiquetas'])) {
+                $conexion->addEtiquetas($idEven, htmlspecialchars($_POST['etiquetas']));
+            }
+
+            if(isset($_FILES['imagen']) && !empty($_FILES['images'])){
                 $file_name = $_FILES['imagen']['name'];
                 $file_size = $_FILES['imagen']['size'];
                 $file_tmp = $_FILES['imagen']['tmp_name'];
@@ -50,13 +54,12 @@
                 
                 if(in_array($file_ext,$extensions) === true && $file_size < 2097152){
                     move_uploaded_file($file_tmp, "img/" . $file_name);
-                    $ruta = "/img/" . $file_name;
 
-                    $conexion->modificarImagenEvento($idEven, $ruta);
+                    $conexion->addImagenGaleria($idEven, $file_name);
                 }
             }
 
-            if(isset($_POST['descripcion']) && is_string($_POST['descripcion'])) {
+            if(isset($_POST['descripcion']) && is_string($_POST['descripcion']) && !empty($_POST['descripcion'])) {
                 $conexion->modificarDescripcionEvento($idEven, htmlspecialchars($_POST['descripcion']));
             }
 

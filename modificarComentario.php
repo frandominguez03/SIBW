@@ -33,15 +33,16 @@
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if($usuario['moderador'] == 1 && $identificado) {
-            if(isset($_POST['contenido'])) {
-                $conexion->modificarComentario($idComen, htmlspecialchars($_POST['contenido']));
+            if(isset($_POST['comentario']) && !empty($_POST['comentario'])) {
+                $conexion->modificarComentario($idComen, htmlspecialchars($_POST['comentario']));
 
-                header("refresh:2;url=evento.php?ev=" . $idEven);
-                echo 'Cambios realizados con éxito. Redirigiendo...';
+                header("Location: evento.php?ev=" . $idEven);
             }
         }
         exit();
       }
 
-    echo $twig->render('modificarComentario.html', ['evento' => $evento, 'comentario' => $comentario, 'identificado' => $identificado, 'usuario' => $usuario]);
+    $palabras = $conexion->getPalabrasCensuradas();
+
+    echo $twig->render('modificarComentario.html', ['evento' => $evento, 'comentario' => $comentario, 'palabras' => $palabras, 'identificado' => $identificado, 'usuario' => $usuario]);
 ?>

@@ -37,15 +37,14 @@
                 $extensions= array("jpeg","jpg","png");
                 
                 if(in_array($file_ext,$extensions) === true && $file_size < 2097152){
-                    move_uploaded_file($file_tmp, "img/" . $file_name);
-                    $ruta = "/img/" . $file_name;
+                    move_uploaded_file($file_tmp, 'img/' . $file_name);
 
-                    $idEvento = $conexion->newEvento($nombre, $lugar, $fecha, $contenido, $ruta);
+                    $idEvento = $conexion->newEvento($nombre, $lugar, $fecha, $contenido, $file_name);
                     $conexion->addEtiquetas($idEvento, $etiquetas);
 
                     if($idEvento !== -1) {
                         header("refresh:2;url=evento.php?ev=" . $idEvento);
-                        echo 'Evento creado.';
+                        echo 'Evento creado. Redireccionando...';
                     }
                 }
             }

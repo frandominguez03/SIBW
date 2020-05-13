@@ -18,10 +18,17 @@
     }
 
     if($_SERVER['REQUEST_METHOD'] === 'GET') {
-        if($usuario['super'] == 1) {
+        if($usuario['gestor'] == 1) {
             if(isset($_GET['ev']) && ctype_digit($_GET['ev']) && isset($_GET['delete']) && is_string($_GET['delete']) && $_GET['delete'] == true) {
                 $conexion->borrarEvento($_GET['ev']);
-                header("Location: gestioneventos.php");
+
+                if(isset($_GET['evento']) && $_GET['evento'] == true) {
+                    header("Location: index.php");
+                }
+
+                else {
+                    header("Location: gestioneventos.php");
+                }
             }
         }
     }

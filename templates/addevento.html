@@ -2,15 +2,17 @@
     {% block contenido %}
         {% if usuario['gestor'] == 1 %}
         <article class="formLogin">
-            <form action="addevento.php" method="post" id="addevento" enctype="multipart/form-data">
-                Nombre del Evento<br> <input type="text" name="name" required/><br><br>
-                Lugar<br> <input type="text" name="lugar" required/><br><br>
-                Fecha<br> <input type="date" name="fecha" required/><br><br>
-                Etiquetas <em>(separadas por comas)</em><br> <input type="text" name="etiquetas" required/><br><br>
-                Descripción<br> <textarea name="contenido" form="addevento" required></textarea><br><br>
-                Imagen<br> <input type="file" name="imagen" required/><br><br>
-                <input type="submit" value="Publicar Evento" />
-            </form>
+            <div id="formularioAddEvento">
+                <form action="addevento.php" method="post" id="addevento" enctype="multipart/form-data">
+                    Nombre del Evento<br> <input type="text" name="name" required/><br><br>
+                    Lugar<br> <input type="text" name="lugar" required/><br><br>
+                    Fecha<br> <input type="date" name="fecha" required/><br><br>
+                    Etiquetas <em>(separadas por comas)</em><br> <input type="text" name="etiquetas" required/><br><br>
+                    Descripción<br> <textarea name="contenido" form="addevento" required></textarea><br><br>
+                    Imagen<br> <input type="file" name="imagen" required/><br><br>
+                    <input type="submit" value="Publicar Evento" />
+                </form>
+            </div>
         </article>
         {% endif %}
     {% endblock %}
