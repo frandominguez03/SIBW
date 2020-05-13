@@ -1,55 +1,15 @@
 {% extends "padre.html" %}
     {% block contenido %}
     <article class="grid">
-        <div class="column">
-            <div>
-                <img class="rejilla" src="/img/alo.jpg">
-                <p><a href="evento.php?ev=1">Fernando Alonso</a></p>
+        {% for evento in eventos|batch(3) %}
+            <div class="column">
+                {% for fila in evento %}
+                    <div>
+                        <a href="evento.php?ev={{ fila[0] }}"><img class="rejilla" src="{{ fila[4] }}"></a>
+                        <p><a href="evento.php?ev={{ fila[0] }}">{{ fila[1] }}</p>
+                    </div>
+                {% endfor %}
             </div>
-
-            <div>
-                <img class="rejilla" src="/img/sai.jpg">
-                <p><a href="evento.php?ev=2">Carlos Sainz Jr</a></p>
-            </div>
-
-            <div>
-                <img class="rejilla" src="/img/kar.jpeg">
-                <p><a href="evento.php?ev=3">Narain Karthikeyan</a></p>
-            </div>
-        </div>
-
-        <div class="column">
-            <div>
-                <img class="rejilla" src="/img/ham.jpg">
-                <p><a href="evento.php?ev=4">Lewis Hamilton</a></p>
-            </div>
-
-            <div>
-                <img class="rejilla" src="/img/ver.jpeg">
-                <p><a href="evento.php?ev=5">Max Verstappen</a></p>
-            </div>
-
-            <div>
-                <img class="rejilla" src="/img/sat.jpg">
-                <p><a href="evento.php?ev=6">Takuma Sato</a></p>
-            </div>
-        </div>
-
-        <div class="column">
-            <div>
-                <img class="rejilla" src="/img/ric.jpg">
-                <p><a href="evento.php?ev=7">Daniel Ricciardo</a></p>
-            </div>
-
-            <div>
-                <img class="rejilla" src="/img/mal.jpg">
-                <p><a href="evento.php?ev=8">Pastor Maldonado</a></p>
-            </div>
-
-            <div>
-                <img class="rejilla" src="/img/bia.jpg">
-                <p><a href="evento.php?ev=9">Jules Bianchi</a></p>
-            </div>
-        </div>
+        {% endfor %}
     </article>
     {% endblock %}

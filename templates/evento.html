@@ -7,7 +7,7 @@
 
             {% if usuario['gestor'] == 1 %}
                 <a href="/gestioneventos.php?ev={{ evento['id'] }}&delete=true"><img class="iconos" src="/img/senales.png"/></a>
-                <a href="/modificar.php?ev={{ evento['id'] }}&comen={{ comentario[0] }}"><img class="iconos" src="/img/lapiz.png"/></a>
+                <a href="/modificarEvento.php?ev={{ evento['id'] }}"><img class="iconos" src="/img/lapiz.png"/></a>
             {% endif %}
 
             <h4>
