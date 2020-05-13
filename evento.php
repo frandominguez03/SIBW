@@ -34,10 +34,8 @@
     $evento = $conexion->getEvento($idEv);
     $comentarios = $conexion->getComentarios($idEv);
     $palabras = $conexion->getPalabrasCensuradas();
+    $galeria = $conexion->getGaleria($idEv);
+    $etiquetas = $conexion->getEtiquetas($idEv);
 
-    if($idEv == 1) {
-        $galeria = $conexion->getGaleria();
-    }
-
-    echo $twig->render('evento.html', ['evento' => $evento, 'comentarios' => $comentarios, 'palabras' => $palabras, 'galeria' => $galeria, 'usuario' => $usuario, 'identificado' => $identificado]);
+    echo $twig->render('evento.html', ['evento' => $evento, 'comentarios' => $comentarios, 'palabras' => $palabras, 'galeria' => $galeria, 'etiquetas' => $etiquetas, 'usuario' => $usuario, 'identificado' => $identificado]);
 ?>

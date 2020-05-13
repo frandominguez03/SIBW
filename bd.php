@@ -82,8 +82,9 @@ class BDGestion {
         return $img;
     }
 
-    function getGaleria() {
-        $res = $this->conexion->query("SELECT src from galeria");
+    /* Función para obtener todas las imagenes de un evento */
+    function getGaleria($idEvento) {
+        $res = $this->conexion->query("SELECT src FROM galeria WHERE idEvento='$idEvento'");
 
         $img = array();
 
@@ -96,9 +97,31 @@ class BDGestion {
         return $img;
     }
 
+    /* Función para obtener todas las etiquetas pertenecientes a un evento */
+    function getEtiquetas($idEvento) {
+        $res = $this->conexion->query("SELECT nombre FROM etiquetas WHERE idEvento='$idEvento'");
+
+        $etiquetas = array();
+
+        if($res->num_rows > 0) {
+            while($row = $res->fetch_assoc()) {
+                array_push($etiquetas, mb_strtoupper($row['nombre']));
+            }
+        }
+
+        return $etiquetas;
+    }
+
+    /* Función para añadir etiquetas a un evento */
+    function addEtiquetas($idEvento, $etiquetas) {
+        foreach($etiquetas as $etiqueta) {
+            $this->conexion->query("INSERT INTO etiquetas (idEvento, nombre) VALUES ('$idEvento', '$etiqueta')");
+        }
+    }
+
     /* Comprobar los datos de inicio de sesión de un usuario */
     function checkLogin($nick, $pass) {
-        $res = $this->conexion->query("SELECT password from usuarios WHERE name='" . $nick . "'");
+        $res = $this->conexion->query("SELECT password FROM usuarios WHERE name='" . $nick . "'");
 
         if($res->num_rows > 0) {
             $row = $res->fetch_assoc();

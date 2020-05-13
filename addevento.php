@@ -18,11 +18,13 @@
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
-        if(isset($_POST['name']) && isset($_POST['lugar']) && isset($_POST['fecha']) && isset($_POST['contenido'])) {
+        if(isset($_POST['name']) && isset($_POST['lugar']) && isset($_POST['fecha']) && isset($_POST['etiquetas']) && isset($_POST['contenido'])) {
             // Saneamos las entradas
             $nombre = htmlspecialchars($_POST['name']);
             $lugar = htmlspecialchars($_POST['lugar']);
             $fecha = preg_replace("([^0-9/])", "", $_POST['fecha']);
+            $etiquetasEntrada = htmlspecialchars($_POST['etiquetas']);
+            $etiquetas = explode(',', $etiquetasEntrada);
             $contenido = htmlspecialchars($_POST['contenido']);
 
             if(isset($_FILES['imagen'])){
@@ -39,6 +41,7 @@
                     $ruta = "/img/" . $file_name;
 
                     $idEvento = $conexion->newEvento($nombre, $lugar, $fecha, $contenido, $ruta);
+                    $conexion->addEtiquetas($idEvento, $etiquetas);
 
                     if($idEvento !== -1) {
                         header("refresh:2;url=evento.php?ev=" . $idEvento);
