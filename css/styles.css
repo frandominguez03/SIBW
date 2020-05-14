@@ -71,8 +71,10 @@ header h2 {
 .sidebar {
     background-color: #f1f1f1;
     position: absolute;
-    height: 47em;
     width: 30%;
+    border-radius: 10px;
+    margin: 1%;
+    padding: 5px;
 }
 
 .sidebar a {
@@ -80,16 +82,15 @@ header h2 {
     color: black;
     padding: 16px;
     text-decoration: none;
+    text-align: center;
 }
 
 /* Responsive para el sidebar y el contenido */
 @media screen and (max-width: 700px) {
     .sidebar {
-      width: 100%;
+      width: 90%;
       height: auto;
     }
-    .sidebar a {float: left;}
-    div.content {margin-left: 0;}
 }
 
 
@@ -100,12 +101,29 @@ header h2 {
     }
 }
 
+@media screen and (max-width: 600px) {
+    .sidebar {
+        float: none;
+    }
+}
+
 /* Evento */
 .evento {
     width: 70%;
     margin-left: 50%;
+    margin-bottom: 15%;
     padding: 5px 1px;
     height: 75vh;
+}
+
+#defaultcomm {
+    margin-bottom: 15%;
+}
+
+@media screen and (max-width: 400px) {
+    #defaultcomm {
+        margin: 0;
+    }
 }
 
 #event-img {
@@ -182,14 +200,15 @@ header h2 {
 
 @media screen and (max-width: 500px) {
     .evento {
-        padding-top: 30%;
+        padding-top: 80%;
+        margin-left: 10%;
         padding-bottom: 500px;
     }
 }
 
 @media screen and (max-width: 400px) {
     .evento {
-        padding-top: 150px;
+        padding-top: 80%;
         padding-bottom: 600px;
     }
 }
@@ -204,10 +223,26 @@ article.grid {
     width: 70%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1100px) {
     article.grid {
-        padding-top: 150px;
-        padding-bottom: 150px;
+        display: block;
+        padding-top: 0;
+        padding-left: 25%;
+        padding-bottom: 65%;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    article.grid {
+        display: block;
+        padding-top: 65%;
+        padding-bottom: 65%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    article.grid {
+        display: block;
     }
 }
 
@@ -231,7 +266,6 @@ article.grid {
 
 .item img{
     width: 250px;
-    height: 220px;
 }
 
 /* A partir de 700px ponemos solo dos columnas*/
@@ -243,12 +277,6 @@ article.grid {
 
     .column img {
         height: 100%;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .sidebar {
-        float: none;
     }
 }
 
@@ -286,14 +314,17 @@ article.grid {
 }
 
 footer {
-    left: 0;
-    bottom: 0;
+    clear: both;
     background-color: dimgray;
     text-align: center;
     color: white;
-    padding: 20px;
     width: 100%;
+    position: fixed;
     float: left;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-bottom: 1rem;
 }
 
 /* Hacemos responsive el footer */
@@ -353,10 +384,25 @@ footer {
     display: flow-root;
 }
 
+@media screen and (max-width: 1100px) {
+    .formLogin {
+        padding-bottom: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .formLogin {
+        padding-top: 80%;
+        padding-left: 10%;
+        padding-bottom: 80%;
+        margin-left: 10%;
+    }
+}
+
 #formularioLogin {
     margin-top: 10%;
     margin-left: 40%;
-    margin-bottom: 90%;
+    margin-bottom: 40%;
 }
 
 #formularioRegistro {
@@ -376,6 +422,14 @@ footer {
     margin-bottom: 50%;
 }
 
+@media screen and (max-width: 500px) {
+    #formularioAddEvento {
+        margin-top: 0;
+        margin-left: 0;
+        margin-bottom: 0;
+    }
+}
+
 #formularioModEvento {
     margin-top: 10%;
     margin-left: 40%;
@@ -386,6 +440,23 @@ footer {
     margin-top: 10%;
     margin-left: 40%;
     margin-bottom: 60%;
+}
+
+@media screen and (max-width: 500px) {
+    #perfil {
+        padding-top: 110%;
+        margin-left: -40%;
+        padding-bottom: 20%;
+        display: flow-root;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    #perfil {
+        padding-top: 150%;
+        padding-bottom: 20%;
+        display: flow-root;
+    }
 }
 
 /* Iconos */
@@ -423,8 +494,9 @@ footer {
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  max-width: 750px;
   position: relative;
+  display: inline-block;
   margin: auto;
 }
 

@@ -28,7 +28,7 @@
     if($idEv != -1 && $identificado && ($usuario['moderador'] == 1 || $usuario['gestor'] == 1 || $usuario['super'] == 1)) {
         if(isset($_GET['comen']) && ctype_digit($_GET['comen']) && isset($_GET['delete']) && $_GET['delete'] == true) {
             $conexion->borrarComentario($_GET['comen']);
-            header("Location: index.php");
+            header("Location: evento.php?ev=" . $idEv);
         }
     }
 

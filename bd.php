@@ -283,6 +283,17 @@ class BDGestion {
         $res = $this->conexion->query("UPDATE usuarios SET name='$nuevo' WHERE name='$antiguo'");
     }
 
+    /* ¿Existe un usuario con ese nombre? */
+    function existeNombre($nombre) {
+        $res = $this->conexion->query("SELECT * FROM usuarios WHERE name='$nombre'");
+
+        if($res->num_rows > 0) {
+            return true;
+        }
+
+        return false;
+    }
+
     /* Función para cambiar la contraseña */
     function cambiarPass($user, $pass) {
         $nuevo = password_hash($pass, PASSWORD_DEFAULT);

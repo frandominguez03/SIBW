@@ -24,10 +24,19 @@
                     $nuevoNombre = $_POST['newName'];
                 }
 
-                $conexion->cambiarNombre($_SESSION['nameUsuario'], $nuevoNombre);
-                $_SESSION['nameUsuario'] = $nuevoNombre;
-                header("refresh:1;url=perfil.php");
-                echo 'Nombre cambiado con éxito.';
+                $existeNombre = $conexion->existeNombre($nuevoNombre);
+
+                if(!$existeNombre) {
+                    $conexion->cambiarNombre($_SESSION['nameUsuario'], $nuevoNombre);
+                    $_SESSION['nameUsuario'] = $nuevoNombre;
+                    header("refresh:1;url=perfil.php");
+                    echo 'Nombre cambiado con éxito.';
+                }
+                
+                else {
+                    header("refresh:1;url=perfil.php");
+                    echo 'El nombre de usuario ya está en uso. Prueba otro.';
+                }
             }
 
             $verificada = false;
@@ -45,8 +54,7 @@
                 if($verificada) {
                     $conexion->cambiarPass($_SESSION['nameUsuario'], $_POST['newPass']);
                     session_destroy();
-                    header("refresh:3;url=login.php");
-                    echo 'Contraseña cambiada con éxito. Deberás iniciar sesión...';
+                    header("Location: login.php");
                 }  
             }
         }
