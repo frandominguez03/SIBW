@@ -204,7 +204,7 @@ class BDGestion {
 
     /* Función para crear un evento */
     function newEvento($nombre, $lugar, $fecha, $contenido, $ruta) {
-        $insertar = $this->conexion->query("INSERT INTO eventos (nombre, lugar, fecha, imagen, descripcion) VALUES ('$nombre', '$lugar', '$fecha', '$ruta', '$contenido')");
+        $insertar = $this->conexion->query("INSERT INTO eventos (nombre, lugar, fecha, imagen, descripcion, publicado) VALUES ('$nombre', '$lugar', '$fecha', '$ruta', '$contenido', '1')");
 
         $res = $this->conexion->query("SELECT id FROM eventos WHERE nombre='$nombre'");
 
@@ -248,7 +248,10 @@ class BDGestion {
 
     /* Función para borrar un evento */
     function borrarEvento($idEvento) {
-        $res = $this->conexion->query("DELETE FROM eventos WHERE id='$idEvento'");
+        $this->conexion->query("DELETE FROM eventos WHERE id=" . $idEvento);
+        $this->conexion->query("DELETE FROM galeria WHERE idEvento=" . $idEvento);
+        $this->conexion->query("DELETE FROM eventosPublicados WHERE idEvento=" . $idEvento);
+        $this->conexion->query("DELETE FROM comentarios WHERE idEven=" . $idEvento);
     }
 
     /* Función para cargar todos los usuarios de la base de datos */
