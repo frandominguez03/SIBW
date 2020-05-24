@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: May 24, 2020 at 05:50 PM
+-- Generation Time: May 24, 2020 at 07:07 PM
 -- Server version: 8.0.19
 -- PHP Version: 7.4.3
 
@@ -66,8 +66,7 @@ INSERT INTO `comentarios` (`idComen`, `idEven`, `autor`, `fecha`, `contenido`, `
 (22, 1, 'Raúl Cepeda', '2020-03-25', 'Sigue así', 0),
 (23, 3, 'Robert Kubica', '2020-03-25', 'Eres grande!! A ver cuándo nos vemos otra vez', 0),
 (24, 5, 'Lucas di Grassi', '2020-03-25', 'A por todas en 2020!', 0),
-(25, 6, 'Christian Klien', '2020-03-25', 'Hace tiempo que no nos vemos, puede estar bien', 0),
-(35, 1, 'oke', '2020-05-14', 'oke', 0);
+(25, 6, 'Christian Klien', '2020-03-25', 'Hace tiempo que no nos vemos, puede estar bien', 0);
 
 -- --------------------------------------------------------
 
@@ -128,7 +127,13 @@ INSERT INTO `etiquetas` (`idEtiqueta`, `idEvento`, `nombre`) VALUES
 (56, 25, 'adasd'),
 (57, 24, 'asdasd'),
 (58, 27, 'adasd'),
-(59, 2, 'carlos');
+(59, 2, 'carlos'),
+(60, 1, 'Bueno'),
+(61, 28, 'asd'),
+(62, 28, ' asd'),
+(63, 28, ' asd'),
+(64, 28, ' as'),
+(65, 28, ' d');
 
 -- --------------------------------------------------------
 
@@ -160,31 +165,6 @@ INSERT INTO `eventos` (`id`, `nombre`, `lugar`, `fecha`, `imagen`, `descripcion`
 (7, 'Daniel Ricciardo', 'Perth, Australia', '2020-03-20', 'ric.jpg', 'Un piloto de gran valor en la parrilla actual de la F1 que por desgracia aún no ha conseguido grandes cosas en la competición.', 1),
 (8, 'Pastor Maldonado', 'Maracay, Venezuela', '2020-03-20', 'mal.jpg', 'Quizás uno de los pilotos más infravalorados durante su paso por la competición.', 1),
 (9, 'Jules Bianchi', 'Niza, Francia', '2020-03-20', 'bia.jpg', 'Un piloto que habría sido sin duda uno de los más grandes en la Fórmula 1.', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `eventosPublicados`
---
-
-CREATE TABLE `eventosPublicados` (
-  `idEvento` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `eventosPublicados`
---
-
-INSERT INTO `eventosPublicados` (`idEvento`) VALUES
-(1),
-(2),
-(3),
-(4),
-(5),
-(6),
-(7),
-(8),
-(9);
 
 -- --------------------------------------------------------
 
@@ -310,12 +290,6 @@ ALTER TABLE `eventos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `eventosPublicados`
---
-ALTER TABLE `eventosPublicados`
-  ADD PRIMARY KEY (`idEvento`);
-
---
 -- Indexes for table `galeria`
 --
 ALTER TABLE `galeria`
@@ -341,31 +315,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `idComen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idComen` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `etiquetas`
 --
 ALTER TABLE `etiquetas`
-  MODIFY `idEtiqueta` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `idEtiqueta` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
-
---
--- AUTO_INCREMENT for table `eventosPublicados`
---
-ALTER TABLE `eventosPublicados`
-  MODIFY `idEvento` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `galeria`
 --
 ALTER TABLE `galeria`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `palabras`
