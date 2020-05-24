@@ -36,7 +36,7 @@ header h2 {
 }
 
 .menu {
-    margin-right: 35px;
+    margin-right: 15%;
     margin-top: -30px;
 }
 
@@ -549,3 +549,10 @@ footer {
     from {opacity: .4}
     to {opacity: 1}
   }
+
+/* Buscador */
+#buscador {
+    float: right;
+    margin-top: 20px;
+    margin-right: 20px;
+}

@@ -268,11 +268,11 @@ class BDGestion {
 
             case 'super':
                 if($cambio == 1) {
-                    $res = $this->conexion->query("UPDATE usuarios SET gestor='$cambio', moderador='$cambio', super='$cambio' WHERE id='$idUser'");
+                    $this->conexion->query("UPDATE usuarios SET gestor='$cambio', moderador='$cambio', super='$cambio' WHERE id='$idUser'");
                 }
                 
                 else {
-                    $res = $this->conexion->query("UPDATE usuarios SET super='$cambio' WHERE id='$idUser'");
+                    $this->conexion->query("UPDATE usuarios SET super='$cambio' WHERE id='$idUser'");
                 }
             break;
         }
@@ -280,7 +280,7 @@ class BDGestion {
 
     /* Función pra cambiar el nombre */
     function cambiarNombre($antiguo, $nuevo) {
-        $res = $this->conexion->query("UPDATE usuarios SET name='$nuevo' WHERE name='$antiguo'");
+        $this->conexion->query("UPDATE usuarios SET name='$nuevo' WHERE name='$antiguo'");
     }
 
     /* ¿Existe un usuario con ese nombre? */
@@ -297,12 +297,12 @@ class BDGestion {
     /* Función para cambiar la contraseña */
     function cambiarPass($user, $pass) {
         $nuevo = password_hash($pass, PASSWORD_DEFAULT);
-        $res = $this->conexion->query("UPDATE usuarios SET password='$nuevo' WHERE name='$user'");
+        $this->conexion->query("UPDATE usuarios SET password='$nuevo' WHERE name='$user'");
     }
 
     /* Función para borrar un comentario */
     function borrarComentario($idComen) {
-        $res = $this->conexion->query("DELETE FROM comentarios WHERE idComen='$idComen'");
+        $this->conexion->query("DELETE FROM comentarios WHERE idComen='$idComen'");
     }
 
     /* Función para modificar el nombre de un evento */
@@ -328,6 +328,24 @@ class BDGestion {
     /* Función para modificar la descripción de un evento */
     function modificarDescripcionEvento($idEvento, $nombre) {
         $this->conexion->query("UPDATE eventos SET descripcion='$descripcion' WHERE id='$idEvento'");
+    }
+
+    /* Resultados de búsqueda */
+    function busquedaEventos($valor) {
+        $tuplas = "";
+
+        if(!empty($valor)) {
+            $res = $this->conexion->query("SELECT id, nombre FROM eventos WHERE nombre LIKE '%$valor%'");
+
+            $tuplas = array();
+
+            /* Con esto tenemos un array multidimensional para obtener todos los comentarios a la vez */
+            while($row = mysqli_fetch_row($res)) {
+                $tuplas[] = array('id' => $row[0], 'nombre' => $row[1]);
+            }
+        }
+
+        return $tuplas;
     }
 }
 ?>

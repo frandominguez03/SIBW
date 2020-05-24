@@ -7,11 +7,18 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script type="text/javascript" src="/script/script.js"></script>
+        <script type="text/javascript" src="/script/busqueda.js"></script>
     </head>
 
     <body>
         <header>
+            <form>
+                <input id="buscador" type="text" size="30" onkeyup="busqueda(this.value)" placeholder="Búsqueda...">
+                <div id="resultadosBusqueda"></div>
+            </form>
+
             <img id="logo" src="https://pluspng.com/img-png/png-logo-design-fancy-png-logo-design-91-on-professional-logo-design-with-png-logo-design-734.png" width=100px height=100px alt="Logo">
             <h2><a id="titulo" href="index.php">Formula 1 2020</a></h2>
             <nav class="menu">
