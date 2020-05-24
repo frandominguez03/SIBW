@@ -43,6 +43,18 @@
                 $conexion->addEtiquetas($idEven, htmlspecialchars($_POST['etiquetas']));
             }
 
+            if(isset($_POST['publicado'])) {
+                if(!$conexion->estaPublicado($idEven)) {
+                    $conexion->publicarEvento($idEven);
+                }
+            }
+
+            else if(!isset($_POST['publicado'])) {
+                if($conexion->estaPublicado($idEven)) {
+                    $conexion->despublicarEvento($idEven);
+                }
+            }
+
             if(isset($_FILES['imagen']) && !empty($_FILES['images'])){
                 $file_name = $_FILES['imagen']['name'];
                 $file_size = $_FILES['imagen']['size'];

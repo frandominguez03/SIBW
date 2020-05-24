@@ -2,6 +2,7 @@
 class BDGestion {
     private static $conexion;
 
+    /* Constructor */
     public function __construct() {
         $this->conexion = new mysqli("mysql", "coronavirus", "covid19", "SIBW");
 
@@ -10,17 +11,39 @@ class BDGestion {
         }
     }
 
+    /* Función que devuelve un evento */
     function getEvento($idEvento) {
-        $res = $this->conexion->query("SELECT id, nombre, lugar, fecha, imagen, descripcion FROM eventos WHERE id=" . $idEvento);
+        $res = $this->conexion->query("SELECT id, nombre, lugar, fecha, imagen, descripcion, publicado FROM eventos WHERE id=" . $idEvento);
 
-        $evento = array('nombre' => 'Nombre por defecto', 'lugar' => 'Lugar por defecto', 'fecha' => date("Y-m-d"), 'imagen' => '/img/alo.jpg', 'descripcion' => 'Descripción por defecto');
-        
         if($res->num_rows > 0) {
             $row = $res->fetch_assoc();
-            $evento = array('id' => $row['id'], 'nombre' => $row['nombre'], 'lugar' => $row['lugar'], 'fecha' => $row['fecha'], 'imagen' => $row['imagen'], 'descripcion' => $row['descripcion']);
+            $evento = array('id' => $row['id'], 'nombre' => $row['nombre'], 'lugar' => $row['lugar'], 'fecha' => $row['fecha'], 'imagen' => $row['imagen'], 'descripcion' => $row['descripcion'], 'publicado' => $row['publicado']);
         }
 
         return $evento;
+    }
+
+    /* Función que devuelve si un evento está publicado */
+    function estaPublicado($idEvento) {
+        $res = $this->conexion->query("SELECT idEvento FROM eventosPublicados WHERE idEvento=" . $idEvento);
+
+        if($res->num_rows == 1) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /* Función para publicar evento */
+    function publicarEvento($idEvento) {
+        $this->conexion->query("UPDATE eventos SET publicado='1' WHERE id=" . $idEvento);
+        $this->conexion->query("INSERT INTO eventosPublicados (idEvento) VALUES ('$idEvento')");
+    }
+
+    /* Función para 'despublicar' un evento */
+    function despublicarEvento($idEvento) {
+        $this->conexion->query("UPDATE eventos SET publicado='0' WHERE id=" . $idEvento);
+        $this->conexion->query("DELETE FROM eventosPublicados WHERE idEvento=" . $idEvento);
     }
 
     /* Todos los comentarios de un evento */
@@ -335,13 +358,15 @@ class BDGestion {
         $tuplas = "";
 
         if(!empty($valor)) {
-            $res = $this->conexion->query("SELECT id, nombre FROM eventos WHERE nombre LIKE '%$valor%' or descripcion LIKE '%$valor%'");
+            $res = $this->conexion->query("SELECT id, nombre, publicado FROM eventos WHERE nombre LIKE '%$valor%' or descripcion LIKE '%$valor%'");
 
             $tuplas = array();
 
             /* Con esto tenemos un array multidimensional para obtener todos los comentarios a la vez */
             while($row = mysqli_fetch_row($res)) {
-                $tuplas[] = array('id' => $row[0], 'nombre' => $row[1]);
+                if($row[2] == 1) {
+                    $tuplas[] = array('id' => $row[0], 'nombre' => $row[1]);
+                }
             }
         }
 

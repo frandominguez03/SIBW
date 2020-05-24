@@ -17,8 +17,15 @@
                     <strong>Cambiar fecha</strong><br>
                     <input type="date" name="date" /><br><br>
 
-                    <strong>Añadir <em>(separadas por comas)</em></strong><br>
+                    <strong>Añadir etiquetas <em>(separadas por comas)</em></strong><br>
                     <input type="text" name="etiquetas"/><br><br>
+
+                    <strong>Publicado:</strong>
+                    {% if evento['publicado'] == 1 %}
+                        <input type="checkbox" name="publicado" checked><br><br>
+                    {% elseif evento['publicado'] == 0 %}
+                        <input type="checkbox" name="publicado"><br><br>
+                    {% endif %}
 
                     <strong>Añadir Imagen</strong><br>
                     <input type="file" name="imagen"/><br><br>

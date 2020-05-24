@@ -2,10 +2,12 @@
     {% block contenido %}
     <article class="grid">
         {% for evento in eventos %}
-            <div class="item">
-                <p><a href="evento.php?ev={{ evento[0] }}"><img class="rejilla" src="/img/{{ evento[4] }}"></a>
-                <a href="evento.php?ev={{ evento[0] }}">{{ evento[1] }}</a></p>
-            </div>
+            {% if evento[6] == 1 %}
+                <div class="item">
+                    <p><a href="evento.php?ev={{ evento[0] }}"><img class="rejilla" src="/img/{{ evento[4] }}"></a>
+                    <a href="evento.php?ev={{ evento[0] }}">{{ evento[1] }}</a></p>
+                </div>
+            {% endif %}
         {% endfor %}
     </article>
     {% endblock %}

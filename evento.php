@@ -18,7 +18,13 @@
     }
 
     if(isset($_GET['ev']) && ctype_digit($_GET['ev'])) {
-        $idEv = $_GET['ev'];
+        if($conexion->estaPublicado($_GET['ev'])) {
+            $idEv = $_GET['ev'];
+        }
+
+        else {
+            $idEv = -1;
+        }
     }
 
     else {
