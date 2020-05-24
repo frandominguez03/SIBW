@@ -335,7 +335,7 @@ class BDGestion {
         $tuplas = "";
 
         if(!empty($valor)) {
-            $res = $this->conexion->query("SELECT id, nombre FROM eventos WHERE nombre LIKE '%$valor%'");
+            $res = $this->conexion->query("SELECT id, nombre FROM eventos WHERE nombre LIKE '%$valor%' or descripcion LIKE '%$valor%'");
 
             $tuplas = array();
 

@@ -551,8 +551,14 @@ footer {
   }
 
 /* Buscador */
-#buscador {
+#formularioBuscador {
     float: right;
     margin-top: 20px;
     margin-right: 20px;
+}
+
+#resultadosBusqueda {
+    background-color: white;
+    text-align: left;
+    padding-left: 2px;
 }
