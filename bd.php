@@ -25,7 +25,7 @@ class BDGestion {
 
     /* Función que devuelve si un evento está publicado */
     function estaPublicado($idEvento) {
-        $res = $this->conexion->query("SELECT idEvento FROM eventosPublicados WHERE idEvento=" . $idEvento);
+        $res = $this->conexion->query("SELECT * FROM eventos WHERE publicado=1 AND id=" . $idEvento);
 
         if($res->num_rows == 1) {
             return true;
@@ -37,13 +37,11 @@ class BDGestion {
     /* Función para publicar evento */
     function publicarEvento($idEvento) {
         $this->conexion->query("UPDATE eventos SET publicado='1' WHERE id=" . $idEvento);
-        $this->conexion->query("INSERT INTO eventosPublicados (idEvento) VALUES ('$idEvento')");
     }
 
     /* Función para 'despublicar' un evento */
     function despublicarEvento($idEvento) {
         $this->conexion->query("UPDATE eventos SET publicado='0' WHERE id=" . $idEvento);
-        $this->conexion->query("DELETE FROM eventosPublicados WHERE idEvento=" . $idEvento);
     }
 
     /* Todos los comentarios de un evento */
@@ -250,7 +248,6 @@ class BDGestion {
     function borrarEvento($idEvento) {
         $this->conexion->query("DELETE FROM eventos WHERE id=" . $idEvento);
         $this->conexion->query("DELETE FROM galeria WHERE idEvento=" . $idEvento);
-        $this->conexion->query("DELETE FROM eventosPublicados WHERE idEvento=" . $idEvento);
         $this->conexion->query("DELETE FROM comentarios WHERE idEven=" . $idEvento);
     }
 
